@@ -16,21 +16,18 @@ The project just includes the Front-End part. The SDR and antenna parts are TBD.
 The project tree structure is as follows:
 
 	XCOMMS
-	|
-	|---> FrontEnd			
-	|  	|---> Readme
-	|  	|---> PCB
-	|  	|---> Code
-	|
-	|---> TestBoards
-		|---> PLL_LMX2572
-		|	|---> Readme
-		|	|---> PCB
-		|	|---> Code
-		|		|---> LMX2572_TICSPRO
-		|		|---> LMX2572
-		|
-		|---> PA_HMC952ALP5GE
-			|---> Readme
-			|---> PCB
-			|---> Code
+	├───Readme
+	├───FrontEnd
+	│   ├───Readme
+	│   ├───Code
+	│   └───PCB
+	└───TesBoards
+	    ├───PA_HMC952ALP5GE
+	    │   ├───Code
+	    │   └───PCB
+	    └───PLL_LMX2572
+	    	│   ├───Readme
+		├───Code
+		│   ├───LMX2572
+		│   └───LMX2572_TICSPRO
+		└───PCB
