@@ -9,7 +9,8 @@ The subsystem is formed by:	SDR <-> Front-End <-> Antenna
 # **Current state of the project**
 
 At the moment, none of the PCB designs have been updated because they are pending to be translated from Altium to KiCad.
-The project just includes the Front-End part. The SDR and antenna parts are TBD. 
+The project just includes the Front-End part.
+The SDR and antenna parts are TBD. 
 
 # **Project structure**
 
