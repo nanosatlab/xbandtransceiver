@@ -42,19 +42,77 @@ void LMX2572_load_regs(SPI_HandleTypeDef *hspi){
 	LMX2572_write(hspi, R[125-i]);
 }
 
+// Resets the PLL to silicon default values
+void LMX2572_reset(SPI_HandleTypeDef *hspi){
+	uint8_t spi_buf[3] = {0,0,0};
+	spi_buf[2] = 0x1E;
+	spi_buf[1] = 0x21;
+	spi_buf[0] = 0x00;
+
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);	// CSB LOW
+	HAL_SPI_Transmit(hspi, spi_buf, 3, 100);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);		// CSB HIGH
+
+	HAL_Delay(500);
+}
+
+// Sets pfd frequency
+void LMX2572_set_fpd(struct PLL pll) {
+	// Set Doubler
+	if (pll.doubler == 2) R[9] |= (0x01 << 12);
+	else 			 	  R[9] &= ~(0x01 << 12);
+
+	// Set Pre R
+	R[12] &= ~(0xFFF << 0);
+	R[12] |= ((pll.r_pre & 0xFFF) << 0);
+
+	// Set Multiplier
+	R[10] &= ~(0x1F << 7);
+	R[10] |= ((pll.mult & 0x1F) << 7);
+
+	// Set R
+	R[11] &= ~(0xFF << 4);
+	R[11] |= ((pll.r & 0xFF) << 4);
+
+	if (pll.fosc * pll.doubler / pll.r_pre * pll.mult > 100) R[9] |= (0x01 << 14);
+	else R[9] &= ~(0x01 << 14);
+}
+
 // Determine N, NUM and DEN values from target frequency and fpd
 PLL LMX2572_det_param(struct PLL pll){
-	pll.fpd = pll.Fosc * pll.osc_2x * pll.pll_r_pre * pll.pll_r * pll.mult;
-	pll.pll_n = pll.frequency/pll.fpd;
-	pll.pll_den = 1000;
-	pll.pll_num = (pll.frequency/pll.fpd-pll.pll_n)*pll.pll_den;
-	pll.Fvco = pll.fpd * pll.pll_n + (pll.pll_num * pll.fpd / pll.pll_den);
+	pll.fpd = pll.fosc*pll.doubler/pll.r_pre* pll.mult/pll.r;
+	pll.n = pll.frequency/pll.fpd;
+	pll.den = 1000;
+	pll.num = (pll.frequency/pll.fpd-pll.n)*pll.den;
+	pll.Fvco = pll.fpd * pll.n + (pll.num * pll.fpd / pll.den);
+
 	return pll;
 }
 
 // Loads PLL default registers to the PLL register bank
-void LMX2572_LoadDefaultRegBank(){
+PLL LMX2572_defaultConfig(struct PLL pll){
 	for(int i=0; i<126; i++) R[i] = R_default[125-i];
+
+	pll.frequency = PLL_DEFAULT_frequency;
+	pll.fosc = PLL_DEFAULT_fosc;
+	pll.doubler = PLL_DEFAULT_doubler;
+	pll.r_pre = PLL_DEFAULT_r_pre;
+	pll.r = PLL_DEFAULT_r;
+	pll.mult = PLL_DEFAULT_mult;
+	pll.CPG = PLL_DEFAULT_CPG;
+	pll.VCO = PLL_DEFAULT_VCO;
+	pll.VCO_force = PLL_DEFAULT_VCO_force;
+	pll.MASH_order = PLL_DEFAULT_MASH_order;
+	pll.PFD_DLY_SEL = PLL_DEFAULT_PFD_DLY_SEL;
+	pll.chdiv = PLL_DEFAULT_chdiv;
+	pll.out_mux_a = PLL_DEFAULT_out_mux_a;
+	pll.out_mux_b = PLL_DEFAULT_out_mux_b;
+	pll.out_pd_a = PLL_DEFAULT_out_pd_a;
+	pll.out_pd_b = PLL_DEFAULT_out_pd_b;
+	pll.out_pwr_a = PLL_DEFAULT_out_pwr_a;
+	pll.out_pwr_b = PLL_DEFAULT_out_pwr_b;
+
+	return pll;
 }
 
 // Powers Down the PLL
@@ -85,6 +143,90 @@ void LMX2572_on_PLL(SPI_HandleTypeDef *hspi){
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);		// CSB HIGH
 }
 
+// Sets PLL N, DEN and NUM registers
+void LMX2572_set_frequency(struct PLL pll) {
+	// Sets N
+	R[34] &= ~(0x07 << 0);
+	R[34] |= (((pll.n >> 16) & 0x07) << 0);
+	R[36] &= ~(0xFFFF << 0);
+	R[36] |= ((pll.n & 0xFFFF) << 0);
+
+	// Sets DEN
+	R[38] &= ~(0xFFFF << 0);
+	R[38] |= ((pll.den >> 16) << 0);
+	R[39] &= ~(0xFFFF << 0);
+	R[39] |= ((pll.den & 0x0000FFFF) << 0);
+
+	// Sets NUM
+	R[42] &= ~(0xFFFF << 0);
+	R[42] |= ((pll.num >> 16) << 0);
+	R[43] &= ~(0xFFFF << 0);
+	R[43] |= ((pll.num & 0x0000FFFF) << 0);
+}
+
+// Turns on RFout A output
+void LMX2572_switchOn_RFoutA(struct PLL pll){
+	R[44] &= ~(0x01 << 6);
+	pll.out_pd_a = 0;
+}
+
+// Turns off RFout A output
+void LMX2572_switchOff_RFoutA(struct PLL pll){
+	R[44] |= (0x01 << 6);
+	pll.out_pd_a = 1;
+}
+
+// Turns on RFout B output
+void LMX2572_switchOn_RFoutB(struct PLL pll){
+	R[44] &= ~(0x01 << 7);
+	pll.out_pd_b = 0;
+}
+
+// Turns off RFout B output
+void LMX2572_switchOff_RFoutB(struct PLL pll){
+	R[44] |= (0x01 << 7);
+	pll.out_pd_b = 1;
+}
+
+// Sets RFoutA output power
+void LMX2572_pwr_RFoutA(struct PLL pll){
+	R[44] &= ~(0x3F << 8);
+	R[44] |= (pll.out_pwr_a << 8);
+}
+
+// Sets RFoutB output power
+void LMX2572_pwr_RFoutB(struct PLL pll){
+	R[45] &= ~(0x3F << 0);
+	R[45] |= (pll.out_pwr_b << 0);
+}
+
+
+// Sets output A Mux: CHDIV = 0, VCO = 1, HI_Z = 3
+void LMX2572_mux_RFoutA(struct PLL pll){
+	R[45] &= ~(0x03 <<11);
+	R[45] |= (pll.out_mux_a << 11);
+}
+
+// Sets output B Mux: CHDIV = 0, VCO = 1, HI_Z = 3
+void LMX2572_mux_RFoutB(struct PLL pll){
+	R[46] &= ~(0x03 << 0);
+	R[46] |= (pll.out_mux_b << 0);
+}
+
+// Sets CHDIV
+void LMX2572_set_CHDIV(struct PLL pll){
+	R[75] &= ~(0x1F << 6);
+	if		(pll.chdiv == 2)	R[75] |= (0 << 6);
+	else if (pll.chdiv == 4)	R[75] |= (1 << 6);
+	else if (pll.chdiv == 8)	R[75] |= (3 << 6);
+	else if (pll.chdiv == 16)	R[75] |= (5 << 6);
+	else if (pll.chdiv == 32)	R[75] |= (7 << 6);
+	else if (pll.chdiv == 64)	R[75] |= (9 << 6);
+	else if (pll.chdiv == 128)	R[75] |= (12 << 6);
+	else if (pll.chdiv == 256)	R[75] |= (14 << 6);
+}
+
+
 //************************
 //***** TO BE TESTED *****
 //************************
@@ -108,64 +250,6 @@ uint32_t LMX2572_read(SPI_HandleTypeDef *hspi, uint32_t value) {
 	return read;
 }
 
-
-// Resets the PLL
-void LMX2572_reset(SPI_HandleTypeDef *hspi){
-	uint8_t spi_buf[3] = {0,0,0};
-	spi_buf[2] = 0x1E;
-	spi_buf[1] = 0x21;
-	spi_buf[0] = 0x00;
-
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);	// CSB LOW
-	HAL_SPI_Transmit(hspi, spi_buf, 3, 100);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);		// CSB HIGH
-
-	HAL_Delay(500);
-}
-
-// Sets PLL N, DEN and NUM registers
-void LMX2572_set_frequency(struct PLL pll) {
-	// Sets N 
-	R[34] &= ~(0x07 << 0);
-	R[34] |= (((pll.pll_n >> 16) & 0x07) << 0);
-	R[36] &= ~(0xFFFF << 0);
-	R[36] |= ((pll.pll_n & 0xFFFF) << 0);
-	
-	// Sets DEN 
-	R[38] &= ~(0xFFFF << 0);
-	R[38] |= ((pll.pll_den >> 16) << 0);
-	R[39] &= ~(0xFFFF << 0);
-	R[39] |= ((pll.pll_den & 0x0000FFFF) << 0);
-
-	// Sets NUM 
-	R[42] &= ~(0xFFFF << 0);
-	R[42] |= ((pll.pll_num >> 16) << 0);
-	R[43] &= ~(0xFFFF << 0);
-	R[43] |= ((pll.pll_num & 0x0000FFFF) << 0);
-}
-
-// Turns on/off RFout A and RFoutB
-void LMX2572_switch_RFout(struct PLL pll){
-	if (pll.out_pd_a == 1) 	R[44] |= (0x01 << 6);
-	else 					R[44] &= ~(0x01 << 6);
-	if (pll.out_pd_b == 1)	R[44] |= (0x01 << 7);
-	else 			   		R[44] &= ~(0x01 << 7);
-}
-
-// Sets RFoutA output power
-void LMX2572_pwr_RFoutA(struct PLL pll){
-	R[44] &= ~(0x3F << 8);
-	R[44] |= (pll.out_pwr_a << 8);
-}
-
-// Sets RFoutB output power
-void LMX2572_pwr_RFoutB(struct PLL pll){
-	R[45] &= ~(0x3F << 0);
-	R[45] |= (pll.out_pwr_b << 0);
-}
-
-
-
 // Sets Charge Pump Gain in uA
 void LMX2572_set_cpg(struct PLL pll) {
 	R[14] &= 0xFF1800;
@@ -182,29 +266,6 @@ void LMX2572_set_cpg(struct PLL pll) {
 	else if (pll.CPG == 6250) 	R[14] |= 0x0070;		// CPG = 14
 	else if (pll.CPG == 6875) 	R[14] |= 0x0078;		// CPG = 15
 }
-
-// Sets pfd frequency
-void LMX2572_set_fpd(struct PLL pll) {
-	// Set Doubler
-	if (pll.osc_2x == 2) R[9] |= (0x01 << 12);
-	else 			 	 R[9] &= ~(0x01 << 12);
-
-	// Set Pre R
-	R[12] &= ~(0xFFF << 0);
-	R[12] |= ((pll.pll_r_pre & 0xFFF) << 0);
-
-	// Set Multiplier
-	R[10] &= ~(0x1F << 7);
-	R[10] |= ((pll.mult & 0x1F) << 7);
-
-	// Set R
-	R[11] &= ~(0xFF << 4);
-	R[11] |= ((pll.pll_r & 0xFF) << 4);
-
-	if (pll.Fosc * pll.osc_2x * pll.pll_r_pre * pll.mult > 100) R[9] |= (0x01 << 14);
-	else R[9] &= ~(0x01 << 14);
-}
-
 
 // Sets VCO Partial Assist
 void LMX2752_vco_assist(struct PLL pll){
@@ -289,35 +350,10 @@ void LMX2572_calibrate_VCO(struct PLL pll) {
 	R[0] |= (0x01 << 3);
 }
 
-// Sets output A Mux: CHDIV = 0, VCO = 1, HI_Z = 3
-void LMX2572_mux_RFoutA(struct PLL pll){
-	R[45] &= ~(0x03 <<11);
-	R[45] |= (pll.out_mux_a << 11);
-}
-
-// Sets output B Mux: CHDIV = 0, VCO = 1, HI_Z = 3
-void LMX2572_mux_RFoutB(struct PLL pll){
-	R[46] &= ~(0x03 << 0);
-	R[46] |= (pll.out_mux_b << 0);
-}
-
-// Sets CHDIV
-void LMX2572_set_CHDIV(struct PLL pll){
-	R[75] &= ~(0x1F << 6);
-	if		(pll.chdiv == 2)	R[75] |= (0 << 6);
-	else if (pll.chdiv == 4)	R[75] |= (1 << 6);
-	else if (pll.chdiv == 8)	R[75] |= (3 << 6);
-	else if (pll.chdiv == 16)	R[75] |= (5 << 6);
-	else if (pll.chdiv == 32)	R[75] |= (7 << 6);
-	else if (pll.chdiv == 64)	R[75] |= (9 << 6);
-	else if (pll.chdiv == 128)	R[75] |= (12 << 6);
-	else if (pll.chdiv == 256)	R[75] |= (14 << 6);
-}
-
 void LMX2572_set_MASH(struct PLL pll){
 	R[44] &= ~(0x27 << 0);
 	R[44] = (pll.MASH_order << 0);
-	if (pll.pll_num != 0) R[44] |= (0x01 << 5);
+	if (pll.num != 0) R[44] |= (0x01 << 5);
 
 	R[37] &= ~(0x3F << 8);
 	R[37] |= (pll.PFD_DLY_SEL << 8);

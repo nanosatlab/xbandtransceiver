@@ -95,45 +95,21 @@ int main(void)
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
 
-  PLL pll_default = {
-  	5205,					// frequency (MHz)
-  	0,						// Fvco
-  	0,						// fpd
-  	25,						// Fosc
-  	1,						// Doubker
-  	1,						// pll_r_pre
-  	1,						// pll_r
-  	2,						// mult
-  	0,						// pll_n
-  	0,						// pll_num
-  	0,						// pll_den
-  	2500,					// CPG
-  	4,						// VCO
-  	0,						// VCO_force
-  	3,						// MASH_order
-  	3,						// PFD_DLY_SEL
-  	1,						// out_mux_a
-  	3,						// out_mux_b
-  	2,						// chdiv
-  	31,						// out_pwr_a
-  	0,						// out_pwr_b
-  	0,						// out_pd_a
-  	1,						// out_pd_b
-  };
-
-  PLL mypll = pll_default;
-  LMX2572_LoadDefaultRegBank();
+  PLL mypll;
+  mypll = LMX2572_defaultConfig(mypll);
   mypll = LMX2572_det_param(mypll);
-
-  LMX2572_load_regs(&hspi1);
-  HAL_Delay(1000);						// delay of 1 s
-
   LMX2572_set_frequency(mypll);
-  LMX2572_switch_RFout(mypll);
-  HAL_Delay(1000);						// delay of 1 s
+  LMX2572_load_regs(&hspi1);
+  HAL_Delay(1000);
 
-  LMX2572_reset(&hspi1);
-  HAL_Delay(1000);						// delay of 1 s
+  uint32_t read;
+  read= LMX2572_read(&hspi1, R[0]);
+  read = LMX2572_read(&hspi1, R[1]);
+  read = LMX2572_read(&hspi1, R[2]);
+  read = LMX2572_read(&hspi1, R[3]);
+  read = LMX2572_read(&hspi1, R[4]);
+  read = LMX2572_read(&hspi1, R[5]);
+  read = LMX2572_read(&hspi1, R[6]);
 
   /* USER CODE END 2 */
 
