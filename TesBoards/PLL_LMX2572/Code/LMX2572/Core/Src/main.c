@@ -23,7 +23,6 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "lmx2572.h"
-#include "lmx2572_configs.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,11 +95,8 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   PLL mypll;
-  mypll = LMX2572_defaultConfig(mypll);
-  mypll = LMX2572_det_param(mypll);
-  LMX2572_set_frequency(mypll);
-  LMX2572_load_regs(&hspi1);
-  HAL_Delay(1000);
+  mypll = LMX2572_init(mypll, &hspi1);
+  printf("");
 
   uint32_t read;
   read= LMX2572_read(&hspi1, R[0]);

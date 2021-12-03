@@ -7,6 +7,7 @@ extern "C" {
 
 // **** INCLUDES **********************************************
 #include "stm32l4xx_hal.h"
+#include "lmx2572_configs.h"
 
 // **** DEFINES ********************************************
 #define PLL_DEFAULT_frequency	5000
@@ -64,16 +65,22 @@ typedef struct PLL{
 PLL 		LMX2572_det_param(struct PLL pll);
 PLL			LMX2572_defaultConfig(struct PLL pll);
 PLL			LMX2572_loadPLL(struct PLL pll);
+
 void 		LMX2572_write(SPI_HandleTypeDef *hspi, uint32_t value);
 uint32_t	LMX2572_read(SPI_HandleTypeDef *hspi, uint32_t value);
 void 		LMX2572_load_regs(SPI_HandleTypeDef *hspi);
 void 		LMX2572_reset(SPI_HandleTypeDef *hspi);
+
 void 		LMX2572_set_cpg(struct PLL pll);
 void	 	LMX2572_set_fpd(struct PLL pll);
 void 		LMX2572_set_frequency(struct PLL pll);
 void 		LMX2752_vco_assist(struct PLL pll);
 void 		LMX2572_calibrate_VCO(struct PLL pll);
 void 		LMX2572_set_CHDIV(struct PLL pll);
+void 		LMX2572_set_MASH(struct PLL pll);
+
+void 		LMX2572_on_PLL(SPI_HandleTypeDef *hspi);
+void 		LMX2572_off_PLL(SPI_HandleTypeDef *hspi);
 void 		LMX2572_switchOn_RFoutA(struct PLL pll);
 void 		LMX2572_switchOff_RFoutA(struct PLL pll);
 void 		LMX2572_switchOn_RFoutB(struct PLL pll);
@@ -82,9 +89,8 @@ void 		LMX2572_mux_RFoutA(struct PLL pll);
 void 		LMX2572_mux_RFoutB(struct PLL pll);
 void 		LMX2572_pwr_RFoutA(struct PLL pll);
 void 		LMX2572_pwr_RFoutB(struct PLL pll);
-void 		LMX2572_set_MASH(struct PLL pll);
-void 		LMX2572_on_PLL(SPI_HandleTypeDef *hspi);
-void 		LMX2572_off_PLL(SPI_HandleTypeDef *hspi);
+
+PLL 		LMX2572_init(struct PLL pll, SPI_HandleTypeDef *hspi);
 
 #ifdef __cplusplus
 }

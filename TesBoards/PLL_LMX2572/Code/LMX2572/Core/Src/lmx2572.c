@@ -6,18 +6,16 @@
  *
  * 	To implement: FSK, Ramping, Burst Mode, SYSREF Divider, MASH and Phase Synchronization
  *
- *  Last Update: 18/11/2021
+ *  Last Update: 02/12/2021
  *	Author: Guillem Gracia i Sola
  * 	************************************
  */
 
+
+// **** INCLUDES **********************************************
 #include "lmx2572.h"
-#include "lmx2572_configs.h"
 
-
-//***********************
-//***** This Works! *****
-//***********************
+// **** THIS WORKS! *******************************************
 
 // Writes a register to the PLL
 void LMX2572_write(SPI_HandleTypeDef *hspi, uint32_t value) {
@@ -226,10 +224,7 @@ void LMX2572_set_CHDIV(struct PLL pll){
 	else if (pll.chdiv == 256)	R[75] |= (14 << 6);
 }
 
-
-//************************
-//***** TO BE TESTED *****
-//************************
+// **** TO BE TESTED ******************************************
 
 // Reads a register value from the PLL
 uint32_t LMX2572_read(SPI_HandleTypeDef *hspi, uint32_t value) {
@@ -331,6 +326,7 @@ void LMX2752_vco_assist(struct PLL pll){
 
 	R[20] &= ~(0xF << 10);
 	R[20] |= (pll.VCO << 11);
+
 	// Forces the VCO to use the core specified by VCO_SEL
 	if (pll.VCO_force == 1)	R[20] |= (1 << 10);
 
@@ -359,13 +355,17 @@ void LMX2572_set_MASH(struct PLL pll){
 	R[37] |= (pll.PFD_DLY_SEL << 8);
 }
 
-/*// Inits LMX2572
-void LMX2572_init(struct PLL pll, uint32_t lmx2572Regs[]) {
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);		// CSB HIGH
-	LMX2572_default();
-	LMX2572_det_param(pll);
+// Initializes LMX2572 with default values
+PLL LMX2572_init(struct PLL pll, SPI_HandleTypeDef *hspi) {
+	pll = LMX2572_defaultConfig(pll);
+	pll = LMX2572_det_param(pll);
 
-	R[44] |= (0x01 << 6);
-	R[44] |= (0x01 << 7);
+	LMX2572_set_frequency(pll);
+	LMX2572_pwr_RFoutA(pll);
+	LMX2572_switchOff_RFoutA(pll);
+	LMX2572_switchOff_RFoutB(pll);
+	LMX2572_load_regs(hspi);
+
+	return pll;
 }
-*/
+
