@@ -42,9 +42,11 @@
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi1;
 
+USART_HandleTypeDef husart1;
 UART_HandleTypeDef huart2;
 
 /* USER CODE BEGIN PV */
+uint8_t UART1_rxBuffer[12] = {0};
 
 /* USER CODE END PV */
 
@@ -53,13 +55,16 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_USART2_UART_Init(void);
 static void MX_SPI1_Init(void);
+static void MX_USART1_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart){
+    HAL_UART_Receive_IT(&huart2, UART1_rxBuffer, 12);
+}
 /* USER CODE END 0 */
 
 /**
@@ -92,27 +97,36 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   MX_SPI1_Init();
+  MX_USART1_Init();
   /* USER CODE BEGIN 2 */
+
+  HAL_UART_Receive_IT(&huart2, UART1_rxBuffer, 12);
 
   PLL mypll;
   mypll = LMX2572_init(mypll, &hspi1);
-  printf("");
 
-  uint32_t read;
+
+  long read;
   read= LMX2572_read(&hspi1, R[0]);
+  printf("R[0]: %o", read);
   read = LMX2572_read(&hspi1, R[1]);
+  printf("R[1]: %o", read);
   read = LMX2572_read(&hspi1, R[2]);
+  printf("R[2]: %o", read);
   read = LMX2572_read(&hspi1, R[3]);
+  printf("R[3]: %o", read);
   read = LMX2572_read(&hspi1, R[4]);
+  printf("R[4]: %o", read);
   read = LMX2572_read(&hspi1, R[5]);
+  printf("R[5]: %o", read);
   read = LMX2572_read(&hspi1, R[6]);
+  printf("R[6]: %o", read);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-  while (1)
-  {
+  while (1) {
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -160,7 +174,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_USART2;
+  PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK2;
   PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
@@ -211,6 +226,40 @@ static void MX_SPI1_Init(void)
   /* USER CODE BEGIN SPI1_Init 2 */
 
   /* USER CODE END SPI1_Init 2 */
+
+}
+
+/**
+  * @brief USART1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_USART1_Init(void)
+{
+
+  /* USER CODE BEGIN USART1_Init 0 */
+
+  /* USER CODE END USART1_Init 0 */
+
+  /* USER CODE BEGIN USART1_Init 1 */
+
+  /* USER CODE END USART1_Init 1 */
+  husart1.Instance = USART1;
+  husart1.Init.BaudRate = 115200;
+  husart1.Init.WordLength = USART_WORDLENGTH_8B;
+  husart1.Init.StopBits = USART_STOPBITS_1;
+  husart1.Init.Parity = USART_PARITY_NONE;
+  husart1.Init.Mode = USART_MODE_TX_RX;
+  husart1.Init.CLKPolarity = USART_POLARITY_LOW;
+  husart1.Init.CLKPhase = USART_PHASE_1EDGE;
+  husart1.Init.CLKLastBit = USART_LASTBIT_DISABLE;
+  if (HAL_USART_Init(&husart1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN USART1_Init 2 */
+
+  /* USER CODE END USART1_Init 2 */
 
 }
 

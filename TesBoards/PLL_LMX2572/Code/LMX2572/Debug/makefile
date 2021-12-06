@@ -60,8 +60,8 @@ all: main-build
 main-build: LMX2572_test.elf secondary-outputs
 
 # Tool invocations
-LMX2572_test.elf: $(OBJS) $(USER_OBJS) D:\GoogleDrive\UPC\MEE\IR\dev\xbandtransceiver\TesBoards\PLL_LMX2572\Code\LMX2572\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "LMX2572_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"D:\GoogleDrive\UPC\MEE\IR\dev\xbandtransceiver\TesBoards\PLL_LMX2572\Code\LMX2572\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LMX2572_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+LMX2572_test.elf: $(OBJS) $(USER_OBJS) C:\Users\guill\Google\ Drive\UPC\MEE\IR\dev\xbandtransceiver\TesBoards\PLL_LMX2572\Code\LMX2572\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "LMX2572_test.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\guill\Google Drive\UPC\MEE\IR\dev\xbandtransceiver\TesBoards\PLL_LMX2572\Code\LMX2572\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="LMX2572_test.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -4,7 +4,7 @@
  *
  * 	Implemented: User control registers, PLL, VCO Partial Assist, outputs, CPG
  *
- * 	To implement: FSK, Ramping, Burst Mode, SYSREF Divider, MASH and Phase Synchronization
+ * 	To implement: SYSREF Divider, MASH and Phase Synchronization
  *
  *  Last Update: 02/12/2021
  *	Author: Guillem Gracia i Sola
@@ -114,7 +114,7 @@ PLL LMX2572_defaultConfig(struct PLL pll){
 }
 
 // Powers Down the PLL
-void LMX2572_off_PLL(SPI_HandleTypeDef *hspi){
+void LMX2572_off(SPI_HandleTypeDef *hspi){
 	R[0] |= (0x01 << 0);
 
 	uint8_t spi_buf[3] = {0,0,0};
@@ -128,7 +128,7 @@ void LMX2572_off_PLL(SPI_HandleTypeDef *hspi){
 }
 
 // Powers Up the PLL
-void LMX2572_on_PLL(SPI_HandleTypeDef *hspi){
+void LMX2572_on(SPI_HandleTypeDef *hspi){
 	R[0] &= ~(0x01 << 0);
 
 	uint8_t spi_buf[3] = {0,0,0};
@@ -163,50 +163,50 @@ void LMX2572_set_frequency(struct PLL pll) {
 }
 
 // Turns on RFout A output
-void LMX2572_switchOn_RFoutA(struct PLL pll){
+void LMX2572_RFoutA_On(struct PLL pll){
 	R[44] &= ~(0x01 << 6);
 	pll.out_pd_a = 0;
 }
 
 // Turns off RFout A output
-void LMX2572_switchOff_RFoutA(struct PLL pll){
+void LMX2572_RFoutA_Off(struct PLL pll){
 	R[44] |= (0x01 << 6);
 	pll.out_pd_a = 1;
 }
 
 // Turns on RFout B output
-void LMX2572_switchOn_RFoutB(struct PLL pll){
+void LMX2572_RFoutB_On(struct PLL pll){
 	R[44] &= ~(0x01 << 7);
 	pll.out_pd_b = 0;
 }
 
 // Turns off RFout B output
-void LMX2572_switchOff_RFoutB(struct PLL pll){
+void LMX2572_RFoutB_Off(struct PLL pll){
 	R[44] |= (0x01 << 7);
 	pll.out_pd_b = 1;
 }
 
 // Sets RFoutA output power
-void LMX2572_pwr_RFoutA(struct PLL pll){
+void LMX2572_RFoutA_pwr(struct PLL pll){
 	R[44] &= ~(0x3F << 8);
 	R[44] |= (pll.out_pwr_a << 8);
 }
 
 // Sets RFoutB output power
-void LMX2572_pwr_RFoutB(struct PLL pll){
+void LMX2572_RFoutB_pwr(struct PLL pll){
 	R[45] &= ~(0x3F << 0);
 	R[45] |= (pll.out_pwr_b << 0);
 }
 
 
 // Sets output A Mux: CHDIV = 0, VCO = 1, HI_Z = 3
-void LMX2572_mux_RFoutA(struct PLL pll){
+void LMX2572_RFoutA_mux(struct PLL pll){
 	R[45] &= ~(0x03 <<11);
 	R[45] |= (pll.out_mux_a << 11);
 }
 
 // Sets output B Mux: CHDIV = 0, VCO = 1, HI_Z = 3
-void LMX2572_mux_RFoutB(struct PLL pll){
+void LMX2572_RFoutB_mux(struct PLL pll){
 	R[46] &= ~(0x03 << 0);
 	R[46] |= (pll.out_mux_b << 0);
 }
@@ -263,7 +263,7 @@ void LMX2572_set_cpg(struct PLL pll) {
 }
 
 // Sets VCO Partial Assist
-void LMX2752_vco_assist(struct PLL pll){
+void LMX2752_VCO_assist(struct PLL pll){
 	uint8_t VCO_CAPCTRL_STRT;
 	uint8_t VCO_DACISET_STRT;
 	uint16_t fMin;
@@ -342,7 +342,7 @@ void LMX2752_vco_assist(struct PLL pll){
 }
 
 // Calibrates VCO
-void LMX2572_calibrate_VCO(struct PLL pll) {
+void LMX2572_VCO_calibrate(struct PLL pll) {
 	R[0] |= (0x01 << 3);
 }
 
@@ -360,12 +360,58 @@ PLL LMX2572_init(struct PLL pll, SPI_HandleTypeDef *hspi) {
 	pll = LMX2572_defaultConfig(pll);
 	pll = LMX2572_det_param(pll);
 
+	LMX2572_set_fpd(pll);
 	LMX2572_set_frequency(pll);
-	LMX2572_pwr_RFoutA(pll);
-	LMX2572_switchOff_RFoutA(pll);
-	LMX2572_switchOff_RFoutB(pll);
+	LMX2572_RFoutA_pwr(pll);
+	LMX2572_RFoutA_Off(pll);
+	LMX2572_RFoutB_Off(pll);
 	LMX2572_load_regs(hspi);
 
 	return pll;
 }
 
+// Programs desired frequency in MHz
+PLL LMX2572_frequency(struct PLL pll, SPI_HandleTypeDef *hspi, float frequency){
+
+	// determine pll frequency parameters
+	if (frequency >= 12.5 && frequency <= 6400){
+		if (frequency < 3200){
+			printf("channel divider to be implemented");
+		} else{
+			pll.frequency = frequency;
+		}
+		pll = LMX2572_det_param(pll);
+	} else{
+		printf("frequency is out of range");
+	}
+
+	// program PLL
+	LMX2572_set_frequency(pll);
+	LMX2752_VCO_assist(pll);
+	LMX2572_set_MASH(pll);
+	LMX2572_VCO_calibrate(pll);
+	LMX2572_load_regs(hspi);
+
+	return pll;
+}
+
+// Programs desired power in dB
+PLL LMX2572_powerA(struct PLL pll, SPI_HandleTypeDef *hspi, uint8_t power){
+
+	// convert dB to PLL level (level=power*p1+p2)
+	// p1 and p2 obtained from linear regression
+	if (power <= 6 && power >= -6) {
+		int8_t p1 = -3.726;
+		int8_t p2 = 39.44;
+		pll.out_pwr_a = (uint8_t) (power*p1+p2);
+	} else{
+		printf("power is out of range");
+	}
+
+	// program PLL
+	LMX2572_RFoutA_Off(pll);
+	LMX2572_RFoutA_pwr(pll);
+	LMX2572_load_regs(hspi);
+
+	return pll;
+}
