@@ -18,6 +18,12 @@ The LMX2572 uses SPI in order to be controlled. The code has been written using 
 
 ![image](https://user-images.githubusercontent.com/33161309/143574974-b1bc2b03-1288-45e9-a0ff-e7ff3ddaa5c0.png)
 
+Connections for dummies are:
+    > green  - D6
+    > blak   - D11
+    > orange - D12
+    > yellow - D13
+
 ## Programming with TICS PRO
 
 You can program the LMX2572 evaluation board using the Texas Instruments GUI following this procedure:
