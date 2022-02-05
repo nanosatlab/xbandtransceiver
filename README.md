@@ -1,6 +1,6 @@
 # **Description**
 
-The objective of this repository is to make accessible all the files related to the X-band transceiver, also called XCOMMS, which includes the PCB's designs and all the necessary code of the subsystem as well as the different test boards that have been developed.
+The objective of this repository is to make accessible all the files related to the X-band transceiver, also called XCOMMS, which includes the hardware designs and all the necessary software of the subsystem as well as the different test boards that have been developed.
 
 The subsystem is formed by:	SDR <-> Front-End <-> Antenna
 
@@ -12,15 +12,14 @@ At the moment, none of the PCB designs have been updated because they are pendin
 The project just includes the Front-End part.
 The SDR and antenna parts are TBD. 
 
-# **Project structure**
-
-The project tree structure is as follows:
+# **Project Tree Structure**
 
 	XCOMMS
 	├───Readme
 	├───FrontEnd
 	│   ├───Readme
 	│   ├───HW
+	│   │   ├───KiCad_Libraries
 	│   │   ├───XCOMMS_Interface
 	│   │   └───XCOMMS_RF
 	│   └───SW
