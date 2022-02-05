@@ -2,9 +2,9 @@
 
 The subsystem is designed as a generic X-band front-end subsystem. It will have to communicate with an On-Board-Computer (OBC) using UART protocol, be powered from the spacecraft’s 12 V power bus and have a PC/104 daughter board form factor. It also has to ensure a downlink data rate of at least 10 Mbps from 5º over the horizon at a 550 km LEO orbit, and with a bit-error-rate (BER) of 10^-5.
 
-The objective of this repository is to make accessible all the files related to the X-band transceiver, also called XCOMMS, which includes the hardware designs and all the necessary software of the subsystem as well as the different test boards that have been developed.
-
 The subsystem is formed by:	SDR <-> Front-End <-> Antenna
+
+The objective of this repository is to make accessible all the files related to the X-band transceiver, also called XCOMMS, which includes the hardware designs and all the necessary software of the subsystem as well as the different test boards that have been developed. This repository also includes the design of the required evaluatino boards that have been required for testing the subsystem.
 
 
 
