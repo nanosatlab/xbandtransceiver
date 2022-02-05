@@ -20,15 +20,19 @@ The project tree structure is as follows:
 	├───Readme
 	├───FrontEnd
 	│   ├───Readme
-	│   ├───Code
-	│   └───PCB
+	│   ├───HW
+	│   │   ├───XCOMMS_Interface
+	│   │   └───XCOMMS_RF
+	│   └───SW
+ 	│	
 	└───TesBoards
 	    ├───PA_HMC952ALP5GE
-	    │   ├───Code
-	    │   └───PCB
+	    │   ├───HW
+	    │   └───SW
 	    └───PLL_LMX2572
-	    	│   ├───Readme
-		├───Code
-		│   ├───LMX2572
-		│   └───LMX2572_TICSPRO
-		└───PCB
+	    	├───Readme
+		├───HW
+		└───SW
+		    ├───LMX2572
+		    └───LMX2572_TICSPRO
+		
