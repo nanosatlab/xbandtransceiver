@@ -1,6 +1,6 @@
 (footprint "CoaxialSwitch_Hirose_MS-156C3_Horizontal" (version 20211014) (generator pcbnew)
   (layer "F.Cu")
-  (tedit 61FECB71)
+  (tedit 620B7EE0)
   (descr "Subminiature Coaxial Switch 1.35mm High, DC to 11GHz")
   (tags "Switch Coaxial RF")
   (attr smd)

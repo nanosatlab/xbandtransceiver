@@ -1,6 +1,6 @@
 (footprint "SAMTEC_SFC-110-T2-F-D-A-TR" (version 20211014) (generator pcbnew)
   (layer "F.Cu")
-  (tedit 61FEC531)
+  (tedit 620B7ECC)
   (attr through_hole)
   (fp_text reference "REF**" (at -4.365 -4.36) (layer "F.SilkS")
     (effects (font (size 1 1) (thickness 0.15)))
