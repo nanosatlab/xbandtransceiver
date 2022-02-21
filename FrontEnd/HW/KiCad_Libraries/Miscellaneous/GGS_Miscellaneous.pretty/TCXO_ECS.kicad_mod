@@ -1,6 +1,6 @@
 (footprint "TCXO_ECS" (version 20211014) (generator pcbnew)
   (layer "F.Cu")
-  (tedit 620B7917)
+  (tedit 6213AE8C)
   (attr smd)
   (fp_text reference "REF**" (at 0 -0.5 unlocked) (layer "F.SilkS")
     (effects (font (size 1 1) (thickness 0.15)))
@@ -23,7 +23,7 @@
   (pad "2" smd rect (at 1.3 -4.079999 180) (size 0.8 0.7) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 9b3c501b-dad9-4982-8d5b-c9a69e461fde))
   (pad "3" smd rect (at 1.3 -5.08 180) (size 0.8 0.7) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 900b897c-7c36-468c-88ac-21dfa356ec16))
   (pad "4" smd rect (at 0 -5.08 180) (size 0.8 0.7) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 374a4495-5940-4579-8136-0d75c7822125))
-  (model "D:/GoogleDrive/UPC/NanoSatLab/3Cat8/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Miscellaneous/StepFiles/ECS-TXO-2016-33-250-TR.STEP"
+  (model "C:/Users/guill/Documents/GitHub/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Miscellaneous/StepFiles/ECS-TXO-2016-33-250-TR.STEP"
     (offset (xyz 0.635 4.572 0))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 0))

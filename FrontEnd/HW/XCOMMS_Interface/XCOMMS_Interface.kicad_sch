@@ -1171,10 +1171,6 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 7ae4fc1e-30f2-48ff-b2a7-bc8b7c396696)
   )
-  (text "falta cout" (at 86.36 82.55 0)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid b5d5a242-9b84-458b-8233-63b27f1948bc)
-  )
   (text "MCU" (at 38.1 33.02 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid c28e60e3-090b-4167-bf4f-b1efccc3a6f0)
@@ -1537,8 +1533,8 @@
   (symbol (lib_id "GGS_Connectors:Picoblade_4x1_H") (at 97.79 154.94 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 0f9289a9-c07b-4423-9227-e6c4d7d06c30)
-    (property "Reference" "JTAG1" (id 0) (at 96.52 134.62 0))
-    (property "Value" "MOLEX_532610471" (id 1) (at 96.52 137.16 0))
+    (property "Reference" "J3" (id 0) (at 96.52 134.62 0))
+    (property "Value" "JTAG" (id 1) (at 96.52 137.16 0))
     (property "Footprint" "Connector_Molex:Molex_PicoBlade_53261-0471_1x04-1MP_P1.25mm_Horizontal" (id 2) (at 97.79 154.94 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -1555,8 +1551,8 @@
     (pin "2" (uuid a9592756-6e68-43f1-b266-dc6f8128b7eb))
     (pin "3" (uuid 79efd2b3-df4b-4acb-8d96-9c100dbb1dcd))
     (pin "4" (uuid cb052f0a-6b6a-4397-a420-9814be227111))
-    (pin "MP" (uuid db1de680-a9e0-4af7-a583-dea8cc99d380))
-    (pin "MP" (uuid db1de680-a9e0-4af7-a583-dea8cc99d380))
+    (pin "MP" (uuid db1de680-a9e0-4af7-a583-dea8cc99d382))
+    (pin "MP" (uuid db1de680-a9e0-4af7-a583-dea8cc99d382))
   )
 
   (symbol (lib_id "Device:C") (at 69.85 49.53 0) (unit 1)
@@ -1728,6 +1724,25 @@
     (pin "1" (uuid 7cc488ab-2fe1-42fa-91c9-fa8b47df319c))
   )
 
+  (symbol (lib_id "Device:C") (at 88.9 82.55 0) (unit 1)
+    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (uuid 657fa770-7c96-4254-95e9-81a8281c58b4)
+    (property "Reference" "C_TCXO1" (id 0) (at 92.71 81.2799 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "100nF" (id 1) (at 92.71 83.8199 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Capacitor_SMD:C_0603_1608Metric" (id 2) (at 89.8652 86.36 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (id 3) (at 88.9 82.55 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid c76ea681-27d2-454f-87b5-1d0433abbbb2))
+    (pin "2" (uuid b80e58a7-3307-4f4e-861e-ac752feb9054))
+  )
+
   (symbol (lib_id "MCU_ST_STM32L4:STM32L431KBUx") (at 124.46 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 65bf3fc8-e82e-44ea-bb07-21c592ef88ed)
@@ -1797,8 +1812,8 @@
   (symbol (lib_id "GGS_Connectors:Picoblade_2x1_H") (at 132.08 154.94 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 7af7be37-6e93-4ed7-bb28-3b6dfcb278ed)
-    (property "Reference" "12V1" (id 0) (at 132.08 139.7 0))
-    (property "Value" "MOLEX_52610271" (id 1) (at 132.08 142.24 0))
+    (property "Reference" "J4" (id 0) (at 132.08 139.7 0))
+    (property "Value" "12V" (id 1) (at 132.08 142.24 0))
     (property "Footprint" "Connector_Molex:Molex_PicoBlade_53261-0271_1x02-1MP_P1.25mm_Horizontal" (id 2) (at 132.08 154.94 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -1813,8 +1828,8 @@
     )
     (pin "1" (uuid 5c0b8289-226e-4e35-88ba-7b9376f4a9b0))
     (pin "2" (uuid 4ce6fe8d-2379-4462-a814-acf6d4c01d0c))
-    (pin "MP" (uuid 9f82a92b-70d1-4f60-a809-8b6ddc46fd32))
-    (pin "MP" (uuid 9f82a92b-70d1-4f60-a809-8b6ddc46fd32))
+    (pin "MP" (uuid 9f82a92b-70d1-4f60-a809-8b6ddc46fd34))
+    (pin "MP" (uuid 9f82a92b-70d1-4f60-a809-8b6ddc46fd34))
   )
 
   (symbol (lib_id "power:GND") (at 68.58 138.43 0) (unit 1)
@@ -1831,6 +1846,22 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 4238edf1-bf00-44c9-9ff1-17a08c352405))
+  )
+
+  (symbol (lib_id "power:GND") (at 88.9 86.36 0) (unit 1)
+    (in_bom yes) (on_board yes) (fields_autoplaced)
+    (uuid 8e8c5498-761b-4fad-8a9e-870d060ec873)
+    (property "Reference" "#PWR0101" (id 0) (at 88.9 92.71 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (id 1) (at 88.9 91.44 0))
+    (property "Footprint" "" (id 2) (at 88.9 86.36 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (id 3) (at 88.9 86.36 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid fe22f4c1-1e27-4117-b767-acbb69a151ac))
   )
 
   (symbol (lib_id "power:+3V3") (at 44.5118 71.12 0) (unit 1)
@@ -1957,7 +1988,7 @@
     (property "Reference" "R1" (id 0) (at 101.6 63.4999 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "510" (id 1) (at 101.6 66.0399 0)
+    (property "Value" "10k" (id 1) (at 101.6 66.0399 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Footprint" "Resistor_SMD:R_0603_1608Metric" (id 2) (at 97.282 64.77 90)
@@ -1991,8 +2022,8 @@
   (symbol (lib_id "GGS_Connectors:Picoblade_4x1_H") (at 97.79 134.62 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid b50c6642-ec2d-4f21-8bcb-af36206e84ce)
-    (property "Reference" "UART1" (id 0) (at 96.52 114.3 0))
-    (property "Value" "MOLEX_532610471" (id 1) (at 96.52 116.84 0))
+    (property "Reference" "J2" (id 0) (at 96.52 114.3 0))
+    (property "Value" "UART" (id 1) (at 96.52 116.84 0))
     (property "Footprint" "Connector_Molex:Molex_PicoBlade_53261-0471_1x04-1MP_P1.25mm_Horizontal" (id 2) (at 97.79 134.62 0)
       (effects (font (size 1.27 1.27)) hide)
     )
@@ -2009,8 +2040,8 @@
     (pin "2" (uuid 653923ac-7d05-4f44-b27d-c4e617692f96))
     (pin "3" (uuid baca217d-3bc9-4916-9244-eeff0c190250))
     (pin "4" (uuid f70982a3-6741-4ce0-8fb9-18cef35c26d9))
-    (pin "MP" (uuid fda2f7e0-96ef-4631-ac18-7ee7b410d662))
-    (pin "MP" (uuid fda2f7e0-96ef-4631-ac18-7ee7b410d662))
+    (pin "MP" (uuid fda2f7e0-96ef-4631-ac18-7ee7b410d664))
+    (pin "MP" (uuid fda2f7e0-96ef-4631-ac18-7ee7b410d664))
   )
 
   (symbol (lib_id "power:+12V") (at 115.57 147.32 0) (unit 1)
@@ -2391,8 +2422,8 @@
     (path "/1c391ca7-e610-404c-bdff-cd84da814875/4f194fc9-c27b-42e8-853a-cf4277ad4905"
       (reference "#PWR072") (unit 1) (value "GND") (footprint "")
     )
-    (path "/7af7be37-6e93-4ed7-bb28-3b6dfcb278ed"
-      (reference "12V1") (unit 1) (value "MOLEX_52610271") (footprint "Connector_Molex:Molex_PicoBlade_53261-0271_1x02-1MP_P1.25mm_Horizontal")
+    (path "/8e8c5498-761b-4fad-8a9e-870d060ec873"
+      (reference "#PWR0101") (unit 1) (value "GND") (footprint "")
     )
     (path "/2f6555cb-8bb3-48ae-8adc-4aebbd8da0ca"
       (reference "C1") (unit 1) (value "4.7uF") (footprint "Capacitor_SMD:C_0805_2012Metric")
@@ -2514,11 +2545,20 @@
     (path "/1c391ca7-e610-404c-bdff-cd84da814875/ec498686-3262-49f4-bb96-609ba3b73e4d"
       (reference "C40") (unit 1) (value "0.33uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
+    (path "/657fa770-7c96-4254-95e9-81a8281c58b4"
+      (reference "C_TCXO1") (unit 1) (value "100nF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+    )
     (path "/0c671ed6-a6a6-4798-a2b6-204ff4387a8c"
       (reference "J1") (unit 1) (value "TFC-110-02-F-D-A-P-FR") (footprint "GGS_Connectors:SAMTEC_TFC-110-02-F-D-A-P-FR")
     )
+    (path "/b50c6642-ec2d-4f21-8bcb-af36206e84ce"
+      (reference "J2") (unit 1) (value "UART") (footprint "Connector_Molex:Molex_PicoBlade_53261-0471_1x04-1MP_P1.25mm_Horizontal")
+    )
     (path "/0f9289a9-c07b-4423-9227-e6c4d7d06c30"
-      (reference "JTAG1") (unit 1) (value "MOLEX_532610471") (footprint "Connector_Molex:Molex_PicoBlade_53261-0471_1x04-1MP_P1.25mm_Horizontal")
+      (reference "J3") (unit 1) (value "JTAG") (footprint "Connector_Molex:Molex_PicoBlade_53261-0471_1x04-1MP_P1.25mm_Horizontal")
+    )
+    (path "/7af7be37-6e93-4ed7-bb28-3b6dfcb278ed"
+      (reference "J4") (unit 1) (value "12V") (footprint "Connector_Molex:Molex_PicoBlade_53261-0271_1x02-1MP_P1.25mm_Horizontal")
     )
     (path "/1c391ca7-e610-404c-bdff-cd84da814875/575f37ba-97c6-45e5-8a2e-5226df8b97ca"
       (reference "L1") (unit 1) (value "3.3uH") (footprint "Inductor_SMD:L_Bourns_SRP5030T")
@@ -2530,7 +2570,7 @@
       (reference "L3") (unit 1) (value "2.2uH") (footprint "Inductor_SMD:L_Coilcraft_XAL60xx_6.36x6.56mm")
     )
     (path "/b0dc419d-1860-444a-995b-e370e75d4f19"
-      (reference "R1") (unit 1) (value "510") (footprint "Resistor_SMD:R_0603_1608Metric")
+      (reference "R1") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/1c391ca7-e610-404c-bdff-cd84da814875/40b0f3e7-81f1-464f-ba85-11bb7be3476c"
       (reference "R2") (unit 1) (value "169k") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -2660,9 +2700,6 @@
     )
     (path "/1c391ca7-e610-404c-bdff-cd84da814875/72f62337-84dd-473c-9e51-92c8d570038a"
       (reference "U10") (unit 1) (value "MAX870EUK") (footprint "Package_TO_SOT_SMD:SOT-23-5")
-    )
-    (path "/b50c6642-ec2d-4f21-8bcb-af36206e84ce"
-      (reference "UART1") (unit 1) (value "MOLEX_532610471") (footprint "Connector_Molex:Molex_PicoBlade_53261-0471_1x04-1MP_P1.25mm_Horizontal")
     )
     (path "/0e2e05a9-b1d6-423e-ad08-77f5118bb25b"
       (reference "Y1") (unit 1) (value "TCXO_ECS") (footprint "GGS_Miscellaneous:TCXO_ECS")

@@ -1,6 +1,6 @@
 (footprint "SC70-5" (version 20211014) (generator pcbnew)
   (layer "F.Cu")
-  (tedit 620BE998)
+  (tedit 6213AED2)
   (attr smd)
   (fp_text reference "REF**" (at 0 -0.5 unlocked) (layer "F.SilkS")
     (effects (font (size 1 1) (thickness 0.15)))
@@ -67,7 +67,7 @@
   (pad "3" smd rect (at -1.123951 -4.43 180) (size 0.8509 0.3048) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 6f778e9d-c895-4d88-91b8-05c7b6169fcb))
   (pad "4" smd rect (at 1.123949 -4.43 180) (size 0.8509 0.3048) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 3897a32f-a35e-4c89-986d-9425af141fb7))
   (pad "5" smd rect (at 1.123949 -5.729998 180) (size 0.8509 0.3048) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp bf386271-3c33-47d5-a77b-3306e5af8f3c))
-  (model "D:/GoogleDrive/UPC/NanoSatLab/3Cat8/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Miscellaneous/StepFiles/NC7SP126P5X.STEP"
+  (model "C:/Users/guill/Documents/GitHub/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Miscellaneous/StepFiles/NC7SP126P5X.STEP"
     (offset (xyz 0 5.08 0))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 0))
