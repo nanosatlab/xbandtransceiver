@@ -1,6 +1,6 @@
 (footprint "SAMTEC_SFC-110-T2-F-D-A-TR" (version 20211014) (generator pcbnew)
   (layer "F.Cu")
-  (tedit 620B7ECC)
+  (tedit 6214ED48)
   (attr through_hole)
   (fp_text reference "REF**" (at -4.365 -4.36) (layer "F.SilkS")
     (effects (font (size 1 1) (thickness 0.15)))
@@ -70,7 +70,7 @@
   (pad "18" smd rect (at -4.445 -1.365) (size 0.74 2.22) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp ef1750b5-68c5-4625-b3bf-a354304ca90d))
   (pad "19" smd rect (at -5.715 1.365) (size 0.74 2.22) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 3423b69d-31f4-49a7-a31b-7a75e0771985))
   (pad "20" smd rect (at -5.715 -1.365) (size 0.74 2.22) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp 7a371838-7673-4e2a-955b-9b6e37993916))
-  (model "D:/GoogleDrive/UPC/NanoSatLab/3Cat8/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Connectors/StepFiles/SFC-110-T2-F-D-A-TR.step"
+  (model "C:/Users/guill/Documents/GitHub/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Connectors/StepFiles/SFC-110-T2-F-D-A-TR.step"
     (offset (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 0 180))

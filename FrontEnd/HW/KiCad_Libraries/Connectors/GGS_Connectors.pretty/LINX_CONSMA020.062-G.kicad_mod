@@ -1,6 +1,6 @@
 (footprint "LINX_CONSMA020.062-G" (version 20211014) (generator pcbnew)
   (layer "F.Cu")
-  (tedit 61FEC1F4)
+  (tedit 6214E95A)
   (attr through_hole)
   (fp_text reference "REF**" (at -2.468 -8.2864) (layer "F.SilkS")
     (effects (font (size 0.64 0.64) (thickness 0.15)))
@@ -60,7 +60,7 @@
   (pad "S2" smd rect (at 4.26 -2.45) (size 1.6 4.9) (layers "F.Cu" "F.Paste" "F.Mask") (tstamp e68c5170-03c3-4a20-abd0-ad610c43d035))
   (pad "S3" smd rect (at -4.26 -2.45) (size 1.6 4.9) (layers "B.Cu" "B.Paste" "B.Mask") (tstamp 92e8f8c3-0985-4c0d-8e38-92cbbf365409))
   (pad "S4" smd rect (at 4.26 -2.45) (size 1.6 4.9) (layers "B.Cu" "B.Paste" "B.Mask") (tstamp 08e2d62f-f99a-4268-8b33-617dfcc63e75))
-  (model "D:/GoogleDrive/UPC/NanoSatLab/3Cat8/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Connectors/StepFiles/SMA-H.stp"
+  (model "C:/Users/guill/Documents/GitHub/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Connectors/StepFiles/SMA-H.stp"
     (offset (xyz 0 -2.4 -0.8))
     (scale (xyz 1 1 1))
     (rotate (xyz -90 90 0))
