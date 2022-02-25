@@ -2107,7 +2107,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 5b86c133-0918-4981-9b6f-f570ecb6f5a5)
   )
-  (label "Tx_CE" (at 53.34 180.34 0)
+  (label "PLL_CE" (at 53.34 180.34 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 6128ca3d-bb46-46a5-b693-aa4adedd7bf4)
   )
@@ -2143,7 +2143,7 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 8fbf223c-0625-462a-983f-3b32fbda1ba2)
   )
-  (label "Tx_CE" (at 27.94 76.2 0)
+  (label "PLL_CE" (at 27.94 76.2 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 903eaef7-c627-45de-935c-a948d0d67443)
   )
@@ -4173,7 +4173,7 @@
       (effects (font (size 1.27 1.27)) (justify left))
       (uuid 0e701140-8dea-4f60-9277-78b267fb9e65)
     )
-    (pin "Tx_CE" input (at 36.83 76.2 180)
+    (pin "PLL_CE" input (at 36.83 76.2 180)
       (effects (font (size 1.27 1.27)) (justify left))
       (uuid e1486300-c183-4566-b1b2-25af892407c4)
     )
@@ -4458,7 +4458,7 @@
       (reference "C6") (unit 1) (value "10uF") (footprint "Capacitor_SMD:C_0805_2012Metric")
     )
     (path "/14b0b94e-1900-4eef-997c-90e0c19fc280/22c7397a-07ae-4561-971a-8b7e626239ce"
-      (reference "C7") (unit 1) (value "1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+      (reference "C7") (unit 1) (value "10nF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/14b0b94e-1900-4eef-997c-90e0c19fc280/9676cde1-11fc-48d4-bc56-63775b1b64db"
       (reference "C8") (unit 1) (value "10uF") (footprint "Capacitor_SMD:C_0805_2012Metric")
@@ -4500,7 +4500,7 @@
       (reference "C20") (unit 1) (value "4.7uF") (footprint "Capacitor_SMD:C_0805_2012Metric")
     )
     (path "/14b0b94e-1900-4eef-997c-90e0c19fc280/1f5b78c8-1d71-4c92-bcfa-5ec7a636163a"
-      (reference "C21") (unit 1) (value "10uF") (footprint "Capacitor_SMD:C_0805_2012Metric")
+      (reference "C21") (unit 1) (value "470nF") (footprint "Capacitor_SMD:C_0805_2012Metric")
     )
     (path "/9e916e8d-ae47-4a69-aa9a-bf1f392290ef"
       (reference "C22") (unit 1) (value "100pF") (footprint "Capacitor_SMD:C_0402_1005Metric")
