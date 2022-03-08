@@ -45,7 +45,7 @@
         "silk_text_upright": false,
         "zones": {
           "45_degree_only": false,
-          "min_clearance": 0.254
+          "min_clearance": 0.15239999999999998
         }
       },
       "diff_pair_dimensions": [
@@ -402,7 +402,7 @@
       },
       {
         "bus_width": 12.0,
-        "clearance": 0.254,
+        "clearance": 0.1524,
         "diff_pair_gap": 0.25,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
@@ -414,11 +414,13 @@
           "/AMP1_In",
           "/AMP1_Out",
           "/AMP2_Out",
+          "/FL_Out",
           "/LocalOscillator/RFOUTAP",
           "/Mixer_Out",
           "/PA_RF_IN",
-          "/RF_Tx_in",
-          "/RF_Tx_out",
+          "/PLL_Out",
+          "/RF_in",
+          "/RF_out",
           "/TP1_Out",
           "/TP2_In",
           "/TP3_In",
@@ -426,7 +428,7 @@
         ],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
         "schematic_color": "rgba(0, 0, 0, 0.000)",
-        "track_width": 1.108202,
+        "track_width": 0.803656,
         "via_diameter": 0.8,
         "via_drill": 0.4,
         "wire_width": 6.0
