@@ -2572,7 +2572,7 @@
   (symbol (lib_id "power:GND") (at 21.59 45.72 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 07bafb91-99e2-4082-8b6e-8175bdd2c01b)
-    (property "Reference" "#PWR?" (id 0) (at 21.59 52.07 0)
+    (property "Reference" "#PWR0109" (id 0) (at 21.59 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 21.59 50.8 0))
@@ -2615,7 +2615,7 @@
     (property "Value" "MountingHole_Pad" (id 1) (at 121.92 177.8 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (id 2) (at 121.92 184.15 0)
+    (property "Footprint" "MountingHole:MountingHole_2.7mm_Pad_Via" (id 2) (at 121.92 184.15 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 121.92 184.15 0)
@@ -2662,7 +2662,7 @@
   (symbol (lib_id "power:GND") (at 64.77 41.91 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 17fccb23-1284-49b1-b8e0-e599e0db79ac)
-    (property "Reference" "#PWR?" (id 0) (at 64.77 48.26 0)
+    (property "Reference" "#PWR0175" (id 0) (at 64.77 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 64.77 46.99 0))
@@ -2794,7 +2794,7 @@
     (property "Value" "MountingHole_Pad" (id 1) (at 111.76 184.1499 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (id 2) (at 109.22 184.15 0)
+    (property "Footprint" "MountingHole:MountingHole_2.7mm_Pad_Via" (id 2) (at 109.22 184.15 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 109.22 184.15 0)
@@ -3025,7 +3025,7 @@
     (property "Value" "MountingHole_Pad" (id 1) (at 96.52 177.8 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (id 2) (at 96.52 184.15 0)
+    (property "Footprint" "MountingHole:MountingHole_2.7mm_Pad_Via" (id 2) (at 96.52 184.15 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 96.52 184.15 0)
@@ -3177,7 +3177,7 @@
     (property "Value" "MountingHole_Pad" (id 1) (at 86.36 184.1499 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
-    (property "Footprint" "MountingHole:MountingHole_3.2mm_M3_Pad_Via" (id 2) (at 83.82 184.15 0)
+    (property "Footprint" "MountingHole:MountingHole_2.7mm_M2.5_Pad_Via" (id 2) (at 83.82 184.15 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 83.82 184.15 0)
@@ -3335,7 +3335,7 @@
   (symbol (lib_id "power:GND") (at 48.26 41.91 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 55f92a59-8c39-45cc-91eb-7b2e753eba53)
-    (property "Reference" "#PWR?" (id 0) (at 48.26 48.26 0)
+    (property "Reference" "#PWR0174" (id 0) (at 48.26 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 48.26 46.99 0))
@@ -3785,7 +3785,7 @@
   (symbol (lib_id "power:GND") (at 39.37 45.72 0) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid a6692cd4-96b3-443d-8be6-accd4301b028)
-    (property "Reference" "#PWR?" (id 0) (at 39.37 52.07 0)
+    (property "Reference" "#PWR0112" (id 0) (at 39.37 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 39.37 50.8 0))
@@ -4493,11 +4493,17 @@
     (path "/5211922a-e1d5-4119-b99f-8ff7c7284ff7"
       (reference "#PWR0108") (unit 1) (value "+5V") (footprint "")
     )
+    (path "/07bafb91-99e2-4082-8b6e-8175bdd2c01b"
+      (reference "#PWR0109") (unit 1) (value "GND") (footprint "")
+    )
     (path "/4040a07f-25cf-447d-98d2-351b395831b3"
       (reference "#PWR0110") (unit 1) (value "GND") (footprint "")
     )
     (path "/976b31d8-f55d-45de-914f-3f8841011130"
       (reference "#PWR0111") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/a6692cd4-96b3-443d-8be6-accd4301b028"
+      (reference "#PWR0112") (unit 1) (value "GND") (footprint "")
     )
     (path "/3bb43694-2f07-402c-9bac-c54bf6410d8e"
       (reference "#PWR0113") (unit 1) (value "GND") (footprint "")
@@ -4682,6 +4688,12 @@
     (path "/015054c3-9306-4d1f-8f20-b24050c37bd3"
       (reference "#PWR0173") (unit 1) (value "GND") (footprint "")
     )
+    (path "/55f92a59-8c39-45cc-91eb-7b2e753eba53"
+      (reference "#PWR0174") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/17fccb23-1284-49b1-b8e0-e599e0db79ac"
+      (reference "#PWR0175") (unit 1) (value "GND") (footprint "")
+    )
     (path "/6313534e-7526-48a8-a898-3b99488869c2"
       (reference "#PWR0177") (unit 1) (value "GND") (footprint "")
     )
@@ -4708,18 +4720,6 @@
     )
     (path "/bac6dc4c-de97-4edb-9ea2-b15d3b1814fc"
       (reference "#PWR0187") (unit 1) (value "+5V") (footprint "")
-    )
-    (path "/07bafb91-99e2-4082-8b6e-8175bdd2c01b"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/17fccb23-1284-49b1-b8e0-e599e0db79ac"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/55f92a59-8c39-45cc-91eb-7b2e753eba53"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/a6692cd4-96b3-443d-8be6-accd4301b028"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
     (path "/d3ecef9c-fb94-4e9d-927d-bb7dc8fea0fd"
       (reference "C1") (unit 1) (value "100pF") (footprint "Capacitor_SMD:C_0402_1005Metric")
@@ -4923,16 +4923,16 @@
       (reference "R10") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/49ea3d04-dd55-4ffb-af0f-4dbf09c54d88"
-      (reference "SCRW1") (unit 1) (value "MountingHole_Pad") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_Via")
+      (reference "SCRW1") (unit 1) (value "MountingHole_Pad") (footprint "MountingHole:MountingHole_2.7mm_M2.5_Pad_Via")
     )
     (path "/2e497b62-365a-49a8-8171-e5b9c1dc77d6"
-      (reference "SCRW2") (unit 1) (value "MountingHole_Pad") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_Via")
+      (reference "SCRW2") (unit 1) (value "MountingHole_Pad") (footprint "MountingHole:MountingHole_2.7mm_Pad_Via")
     )
     (path "/227398ff-7060-4354-a52f-5d194ba6472b"
-      (reference "SCRW3") (unit 1) (value "MountingHole_Pad") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_Via")
+      (reference "SCRW3") (unit 1) (value "MountingHole_Pad") (footprint "MountingHole:MountingHole_2.7mm_Pad_Via")
     )
     (path "/0c48b150-3145-4990-a667-72f5d61838fc"
-      (reference "SCRW4") (unit 1) (value "MountingHole_Pad") (footprint "MountingHole:MountingHole_3.2mm_M3_Pad_Via")
+      (reference "SCRW4") (unit 1) (value "MountingHole_Pad") (footprint "MountingHole:MountingHole_2.7mm_Pad_Via")
     )
     (path "/d4ec1feb-fe93-44fc-98b1-414acb3250de"
       (reference "TP1") (unit 1) (value "MS-156C3") (footprint "GGS_Connectors:MS-156C3")
