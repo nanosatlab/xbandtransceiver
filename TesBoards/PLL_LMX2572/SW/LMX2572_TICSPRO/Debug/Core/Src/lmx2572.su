@@ -1,4 +1,0 @@
-lmx2572.c:6:6:lmx2572_write_reg	24	static
-lmx2572.c:19:10:lmx2572_read	32	static
-lmx2572.c:37:6:lmx2572_load_regs	24	static
-lmx2572.c:47:6:lmx2572_reset	24	static

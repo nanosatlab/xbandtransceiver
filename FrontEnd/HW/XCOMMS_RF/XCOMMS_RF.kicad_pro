@@ -33,9 +33,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 3.2,
-          "height": 7.0,
-          "width": 7.0
+          "drill": 0.0,
+          "height": 2.47,
+          "width": 0.505
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -127,7 +127,12 @@
         1.016,
         2.0
       ],
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.0,
+          "drill": 0.0
+        }
+      ],
       "zones_allow_external_fillets": false,
       "zones_use_no_outline": true
     },
@@ -436,7 +441,7 @@
       "idf": "",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "",
+      "step": "XCOMMS_RF.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""
