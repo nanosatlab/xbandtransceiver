@@ -34,8 +34,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 2.47,
-          "width": 0.505
+          "height": 4.6,
+          "width": 4.6
         },
         "silk_line_width": 0.15,
         "silk_text_italic": false,
@@ -407,19 +407,22 @@
         "microvia_drill": 0.1,
         "name": "RF",
         "nets": [
-          "/AMP1_In",
           "/AMP1_Out",
+          "/AMP2_In",
           "/AMP2_Out",
+          "/AMP3_Out",
           "/FL_Out",
           "/LocalOscillator/RFOUTAP",
-          "/Mixer_Out",
+          "/Mix_In",
+          "/Mix_Out",
           "/PA_RF_IN",
           "/PLL_Out",
-          "/RF_in",
+          "/RF_In",
           "/RF_out",
-          "/TP1_Out",
-          "/TP2_In",
+          "/TP1_In",
+          "/TP2_Out",
           "/TP3_In",
+          "/TP4_In",
           "/Tx_LO"
         ],
         "pcb_color": "rgba(0, 0, 0, 0.000)",
