@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Delete resource &apos;lmx2752_NUCLEO/Core/Inc/lmx2572_configs.h&apos;" deleteContents="false" description="Delete resource &apos;lmx2752_NUCLEO/Core/Inc/lmx2572_configs.h&apos;" element1="/lmx2752_NUCLEO/Core/Inc/lmx2572_configs.h" flags="7" id="org.eclipse.ltk.core.refactoring.delete.resources" resources="1" stamp="1610388286277"/>
+</session>

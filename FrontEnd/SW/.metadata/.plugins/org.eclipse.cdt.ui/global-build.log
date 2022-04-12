@@ -1,0 +1,197 @@
+17:51:21 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+17:52:08 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+17:53:43 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:02:41 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:03:01 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:03:10 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:03:39 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:10:24 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:28:53 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:29:44 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:30:57 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:40:29 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L476xx -DDEBUG -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "lmx2572_duplex.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\guill\Google Drive\UPC\TFG\Tests\LMX2572_arduino\lmx2572_duplex\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lmx2572_duplex.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lmx2572_duplex.elf
+ 
+arm-none-eabi-objdump -h -S  lmx2572_duplex.elf  > "lmx2572_duplex.list"
+arm-none-eabi-objcopy  -O binary  lmx2572_duplex.elf  "lmx2572_duplex.bin"
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+Finished building: lmx2572_duplex.bin
+ 
+Finished building: lmx2572_duplex.list
+ 
+18:40:58 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:41:20 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:43:43 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L476xx -DDEBUG -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "lmx2572_duplex.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\guill\Google Drive\UPC\TFG\Tests\LMX2572_arduino\lmx2572_duplex\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lmx2572_duplex.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lmx2572_duplex.elf
+ 
+arm-none-eabi-objdump -h -S  lmx2572_duplex.elf  > "lmx2572_duplex.list"
+arm-none-eabi-objcopy  -O binary  lmx2572_duplex.elf  "lmx2572_duplex.bin"
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+Finished building: lmx2572_duplex.bin
+ 
+Finished building: lmx2572_duplex.list
+ 
+18:44:50 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L476xx -DDEBUG -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "lmx2572_duplex.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\guill\Google Drive\UPC\TFG\Tests\LMX2572_arduino\lmx2572_duplex\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lmx2572_duplex.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lmx2572_duplex.elf
+ 
+arm-none-eabi-objdump -h -S  lmx2572_duplex.elf  > "lmx2572_duplex.list"
+arm-none-eabi-objcopy  -O binary  lmx2572_duplex.elf  "lmx2572_duplex.bin"
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+Finished building: lmx2572_duplex.bin
+ 
+Finished building: lmx2572_duplex.list
+ 
+18:47:54 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:48:31 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:50:27 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+18:53:34 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L476xx -DDEBUG -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "lmx2572_duplex.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\guill\Google Drive\UPC\TFG\Tests\LMX2572_arduino\lmx2572_duplex\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lmx2572_duplex.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lmx2572_duplex.elf
+ 
+arm-none-eabi-objdump -h -S  lmx2572_duplex.elf  > "lmx2572_duplex.list"
+arm-none-eabi-objcopy  -O binary  lmx2572_duplex.elf  "lmx2572_duplex.bin"
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+Finished building: lmx2572_duplex.bin
+ 
+Finished building: lmx2572_duplex.list
+ 
+19:24:49 **** Incremental Build of configuration Debug for project lmx2572_duplex ****
+make -j8 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DUSE_HAL_DRIVER -DSTM32L476xx -DDEBUG -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc -o "lmx2572_duplex.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\guill\Google Drive\UPC\TFG\Tests\LMX2572_arduino\lmx2572_duplex\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="lmx2572_duplex.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: lmx2572_duplex.elf
+ 
+arm-none-eabi-objdump -h -S  lmx2572_duplex.elf  > "lmx2572_duplex.list"
+arm-none-eabi-objcopy  -O binary  lmx2572_duplex.elf  "lmx2572_duplex.bin"
+arm-none-eabi-size   lmx2572_duplex.elf 
+   text	   data	    bss	    dec	    hex	filename
+  14400	    524	   2300	  17224	   4348	lmx2572_duplex.elf
+Finished building: default.size.stdout
+ 
+Finished building: lmx2572_duplex.bin
+ 
+Finished building: lmx2572_duplex.list
+ 

@@ -1,0 +1,10 @@
+16:43:18 **** Incremental Build of configuration Debug for project lmx2752_NUCLEO ****
+make -j8 all 
+arm-none-eabi-size   lmx2752_NUCLEO.elf 
+   text	   data	    bss	    dec	    hex	filename
+  15820	    548	   2316	  18684	   48fc	lmx2752_NUCLEO.elf
+Finished building: default.size.stdout
+ 
+
+16:43:18 Build Finished. 0 errors, 0 warnings. (took 314ms)
+
