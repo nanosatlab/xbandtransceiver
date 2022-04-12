@@ -92,6 +92,7 @@ PLL LMX2572_defaultConfig(struct PLL pll){
 	for(int i=0; i<126; i++) R[i] = R_default[125-i];
 
 	pll.frequency = PLL_DEFAULT_frequency;
+	pll.power = PLL_DEFAULT_power;
 	pll.fosc = PLL_DEFAULT_fosc;
 	pll.doubler = PLL_DEFAULT_doubler;
 	pll.r_pre = PLL_DEFAULT_r_pre;
@@ -160,89 +161,6 @@ void LMX2572_set_frequency(struct PLL pll) {
 	R[42] |= ((pll.num >> 16) << 0);
 	R[43] &= ~(0xFFFF << 0);
 	R[43] |= ((pll.num & 0x0000FFFF) << 0);
-}
-
-// Turns on RFout A output
-void LMX2572_switchOn_RFoutA(struct PLL pll){
-	R[44] &= ~(0x01 << 6);
-	pll.out_pd_a = 0;
-}
-
-// Turns off RFout A output
-void LMX2572_switchOff_RFoutA(struct PLL pll){
-	R[44] |= (0x01 << 6);
-	pll.out_pd_a = 1;
-}
-
-// Turns on RFout B output
-void LMX2572_switchOn_RFoutB(struct PLL pll){
-	R[44] &= ~(0x01 << 7);
-	pll.out_pd_b = 0;
-}
-
-// Turns off RFout B output
-void LMX2572_switchOff_RFoutB(struct PLL pll){
-	R[44] |= (0x01 << 7);
-	pll.out_pd_b = 1;
-}
-
-// Sets RFoutA output power
-void LMX2572_pwr_RFoutA(struct PLL pll){
-	R[44] &= ~(0x3F << 8);
-	R[44] |= (pll.out_pwr_a << 8);
-}
-
-// Sets RFoutB output power
-void LMX2572_pwr_RFoutB(struct PLL pll){
-	R[45] &= ~(0x3F << 0);
-	R[45] |= (pll.out_pwr_b << 0);
-}
-
-
-// Sets output A Mux: CHDIV = 0, VCO = 1, HI_Z = 3
-void LMX2572_mux_RFoutA(struct PLL pll){
-	R[45] &= ~(0x03 <<11);
-	R[45] |= (pll.out_mux_a << 11);
-}
-
-// Sets output B Mux: CHDIV = 0, VCO = 1, HI_Z = 3
-void LMX2572_mux_RFoutB(struct PLL pll){
-	R[46] &= ~(0x03 << 0);
-	R[46] |= (pll.out_mux_b << 0);
-}
-
-// Sets CHDIV
-void LMX2572_set_CHDIV(struct PLL pll){
-	R[75] &= ~(0x1F << 6);
-	if		(pll.chdiv == 2)	R[75] |= (0 << 6);
-	else if (pll.chdiv == 4)	R[75] |= (1 << 6);
-	else if (pll.chdiv == 8)	R[75] |= (3 << 6);
-	else if (pll.chdiv == 16)	R[75] |= (5 << 6);
-	else if (pll.chdiv == 32)	R[75] |= (7 << 6);
-	else if (pll.chdiv == 64)	R[75] |= (9 << 6);
-	else if (pll.chdiv == 128)	R[75] |= (12 << 6);
-	else if (pll.chdiv == 256)	R[75] |= (14 << 6);
-}
-
-// **** TO BE TESTED ******************************************
-
-// Reads a register value from the PLL
-uint32_t LMX2572_read(SPI_HandleTypeDef *hspi, uint32_t value) {
-	uint32_t read = 0;
-	uint8_t read_value[2] = {0x00, 0x00};
-	uint8_t spi_buf[3] = {0,0,0};
-	spi_buf[2] = value | (1<<7);
-	spi_buf[1] = value >> 8;
-	spi_buf[0] = value >> 16;
-
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);	// CSB LOW
-	HAL_SPI_Transmit(hspi, spi_buf, 3, 100);
-	HAL_SPI_Receive(hspi, read_value, 2, 10);
-	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);		// CSB HIGH
-
-	read += read_value[0];
-	read += read_value[1] >> 8;
-	return read;
 }
 
 // Sets Charge Pump Gain in uA
@@ -342,10 +260,124 @@ void LMX2752_vco_assist(struct PLL pll){
 }
 
 // Calibrates VCO
-void LMX2572_calibrate_VCO(struct PLL pll) {
+void LMX2572_calibrate(struct PLL pll) {
 	R[0] |= (0x01 << 3);
 }
 
+// Turns on RFout A output
+void LMX2572_switchOn_RFoutA(struct PLL pll){
+	R[44] &= ~(0x01 << 6);
+	pll.out_pd_a = 0;
+}
+
+// Turns off RFout A output
+void LMX2572_switchOff_RFoutA(struct PLL pll){
+	R[44] |= (0x01 << 6);
+	pll.out_pd_a = 1;
+}
+
+// Turns on RFout B output
+void LMX2572_switchOn_RFoutB(struct PLL pll){
+	R[44] &= ~(0x01 << 7);
+	pll.out_pd_b = 0;
+}
+
+// Turns off RFout B output
+void LMX2572_switchOff_RFoutB(struct PLL pll){
+	R[44] |= (0x01 << 7);
+	pll.out_pd_b = 1;
+}
+
+// Sets RFoutA output power
+void LMX2572_pwr_RFoutA(struct PLL pll){
+	R[44] &= ~(0x3F << 8);
+	R[44] |= (pll.out_pwr_a << 8);
+}
+
+// Sets RFoutB output power
+void LMX2572_pwr_RFoutB(struct PLL pll){
+	R[45] &= ~(0x3F << 0);
+	R[45] |= (pll.out_pwr_b << 0);
+}
+
+// Sets output A Mux: CHDIV = 0, VCO = 1, HI_Z = 3
+void LMX2572_mux_RFoutA(struct PLL pll){
+	R[45] &= ~(0x03 <<11);
+	R[45] |= (pll.out_mux_a << 11);
+}
+
+// Sets output B Mux: CHDIV = 0, VCO = 1, HI_Z = 3
+void LMX2572_mux_RFoutB(struct PLL pll){
+	R[46] &= ~(0x03 << 0);
+	R[46] |= (pll.out_mux_b << 0);
+}
+
+// Sets CHDIV
+void LMX2572_set_CHDIV(struct PLL pll){
+	R[75] &= ~(0x1F << 6);
+	if		(pll.chdiv == 2)	R[75] |= (0 << 6);
+	else if (pll.chdiv == 4)	R[75] |= (1 << 6);
+	else if (pll.chdiv == 8)	R[75] |= (3 << 6);
+	else if (pll.chdiv == 16)	R[75] |= (5 << 6);
+	else if (pll.chdiv == 32)	R[75] |= (7 << 6);
+	else if (pll.chdiv == 64)	R[75] |= (9 << 6);
+	else if (pll.chdiv == 128)	R[75] |= (12 << 6);
+	else if (pll.chdiv == 256)	R[75] |= (14 << 6);
+}
+
+// Initializes LMX2572 with default phase detector frequency and switches outputs off
+PLL LMX2572_init(struct PLL pll, SPI_HandleTypeDef *hspi) {
+	pll = LMX2572_defaultConfig(pll);
+	pll = LMX2572_det_param(pll);
+
+	LMX2572_set_cpg(pll);
+	LMX2572_set_fpd(pll);
+	LMX2572_set_frequency(pll);
+	LMX2572_calibrate(pll);
+	LMX2572_switchOff_RFoutA(pll);
+	LMX2572_switchOff_RFoutB(pll);
+
+	LMX2572_load_regs(hspi);
+
+	return pll;
+}
+
+// Tunes PLL to desired frequency in MHz
+PLL LMX2572_frequency(struct PLL pll, SPI_HandleTypeDef *hspi, float frequency){
+	pll.frequency = frequency;
+	pll = LMX2572_det_param(pll);
+
+	LMX2572_set_frequency(pll);
+	LMX2752_vco_assist(pll);
+	LMX2572_calibrate(pll);
+
+	LMX2572_load_regs(hspi);
+
+	return pll;
+}
+
+// **** TO BE TESTED ******************************************
+
+// Reads a register value from the PLL
+uint32_t LMX2572_read(SPI_HandleTypeDef *hspi, uint32_t value) {
+	uint32_t read = 0;
+	uint8_t read_value[2] = {0x00, 0x00};
+	uint8_t spi_buf[3] = {0,0,0};
+	spi_buf[2] = value | (1<<7);
+	spi_buf[1] = value >> 8;
+	spi_buf[0] = value >> 16;
+
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);	// CSB LOW
+	HAL_SPI_Transmit(hspi, spi_buf, 3, 100);
+	HAL_SPI_Receive(hspi, read_value, 2, 10);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_SET);		// CSB HIGH
+
+	read += read_value[0];
+	read += read_value[1] >> 8;
+	return read;
+}
+
+// sets MASH
 void LMX2572_set_MASH(struct PLL pll){
 	R[44] &= ~(0x27 << 0);
 	R[44] = (pll.MASH_order << 0);
@@ -355,17 +387,17 @@ void LMX2572_set_MASH(struct PLL pll){
 	R[37] |= (pll.PFD_DLY_SEL << 8);
 }
 
-// Initializes LMX2572 with default values
-PLL LMX2572_init(struct PLL pll, SPI_HandleTypeDef *hspi) {
-	pll = LMX2572_defaultConfig(pll);
-	pll = LMX2572_det_param(pll);
+// Selects PLL output A power level as level = p1*power(dBm)+p2
+// Power does not follow a linear behaviour but an exponential one, more thought is required
+PLL	LMX2572_powerA(struct PLL pll, SPI_HandleTypeDef *hspi, int power){
+	float p1 = 3.6;
+	float p2 = 33.3;
+	pll.out_pwr_a = p1*power+p2;
+	pll.power = power;
 
-	LMX2572_set_frequency(pll);
 	LMX2572_pwr_RFoutA(pll);
-	LMX2572_switchOff_RFoutA(pll);
-	LMX2572_switchOff_RFoutB(pll);
+
 	LMX2572_load_regs(hspi);
 
 	return pll;
 }
-

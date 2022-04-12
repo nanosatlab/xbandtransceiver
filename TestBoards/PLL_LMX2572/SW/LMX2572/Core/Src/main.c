@@ -93,19 +93,19 @@ int main(void)
   MX_USART2_UART_Init();
   MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-
   PLL mypll;
-  mypll = LMX2572_init(mypll, &hspi1);
-  printf("");
 
-  uint32_t read;
-  read= LMX2572_read(&hspi1, R[0]);
-  read = LMX2572_read(&hspi1, R[1]);
-  read = LMX2572_read(&hspi1, R[2]);
-  read = LMX2572_read(&hspi1, R[3]);
-  read = LMX2572_read(&hspi1, R[4]);
-  read = LMX2572_read(&hspi1, R[5]);
-  read = LMX2572_read(&hspi1, R[6]);
+  // Test upon connection (5200 MHz)
+  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_8, GPIO_PIN_SET);		// Tx_CE HIGH
+  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);		// LO_EN HIGH
+  mypll = LMX2572_defaultConfig(mypll);
+  LMX2572_load_regs(&hspi1);
+
+  LMX2572_switchOff_RFoutA(mypll);
+
+  mypll = LMX2572_frequency(mypll, &hspi1, 5800);
+
+  LMX2572_switchOn_RFoutA(mypll);
 
   /* USER CODE END 2 */
 
@@ -114,6 +114,12 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
+	  for(float f=5600; f<6000; f++){
+		  HAL_Delay(100);
+//		  LMX2572_switchOff_RFoutA(mypll);
+		  mypll = LMX2572_frequency(mypll, &hspi1, f);
+//		  LMX2572_switchOn_RFoutA(mypll);
+	  }
 
     /* USER CODE BEGIN 3 */
   }
@@ -128,8 +134,13 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
+  /** Configure the main internal regulator output voltage
+  */
+  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
+  {
+    Error_Handler();
+  }
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
@@ -157,18 +168,6 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART2;
-  PeriphClkInit.Usart2ClockSelection = RCC_USART2CLKSOURCE_PCLK1;
-  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
-  {
-    Error_Handler();
-  }
-  /** Configure the main internal regulator output voltage
-  */
-  if (HAL_PWREx_ControlVoltageScaling(PWR_REGULATOR_VOLTAGE_SCALE1) != HAL_OK)
   {
     Error_Handler();
   }
@@ -265,10 +264,10 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOA, GPIO_PIN_9, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOB, T_CSB_Pin|PLL_CSB_Pin|LO_EN_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_4, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, Tx_CE_Pin|GPIO_PIN_9, GPIO_PIN_RESET);
 
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
@@ -276,19 +275,19 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(B1_GPIO_Port, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PA9 */
-  GPIO_InitStruct.Pin = GPIO_PIN_9;
-  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
-
-  /*Configure GPIO pin : PB4 */
-  GPIO_InitStruct.Pin = GPIO_PIN_4;
+  /*Configure GPIO pins : T_CSB_Pin PLL_CSB_Pin LO_EN_Pin */
+  GPIO_InitStruct.Pin = T_CSB_Pin|PLL_CSB_Pin|LO_EN_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : Tx_CE_Pin PA9 */
+  GPIO_InitStruct.Pin = Tx_CE_Pin|GPIO_PIN_9;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
 }
 
@@ -328,4 +327,3 @@ void assert_failed(uint8_t *file, uint32_t line)
 }
 #endif /* USE_FULL_ASSERT */
 
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

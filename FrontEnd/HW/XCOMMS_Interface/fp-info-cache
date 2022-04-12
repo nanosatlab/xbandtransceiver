@@ -1,4 +1,4 @@
-19857863600115069
+19861161509886489
 Audio_Module
 Reverb_BTDR-1H
 Digital Reverberation Unit, http://www.belton.co.kr/inc/downfile.php?seq=17&file=pdf (footprint from http://www.uk-electronic.de/PDF/BTDR-1.pdf)
@@ -52115,6 +52115,13 @@ Switch Coaxial RF
 12
 3
 GGS_Connectors
+Johnson_142-0761-861
+
+
+0
+3
+3
+GGS_Connectors
 LINX_CONSMA020.062-G
 
 
@@ -52142,6 +52149,13 @@ SMP-MSLD-PCE-5T
 0
 5
 2
+GGS_Miscellaneous
+Grapa_0.8mm_11.9mm
+
+
+0
+0
+0
 GGS_Miscellaneous
 SC70-5
 

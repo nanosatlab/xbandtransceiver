@@ -11,6 +11,7 @@ extern "C" {
 
 // **** DEFINES ********************************************
 #define PLL_DEFAULT_frequency	5000
+#define PLL_DEFAULT_power		-10
 #define PLL_DEFAULT_fosc		25
 #define PLL_DEFAULT_doubler 	1
 #define PLL_DEFAULT_r_pre		1
@@ -26,7 +27,7 @@ extern "C" {
 #define PLL_DEFAULT_out_mux_b	1
 #define PLL_DEFAULT_out_pd_a	1
 #define PLL_DEFAULT_out_pd_b	1
-#define PLL_DEFAULT_out_pwr_a	20
+#define PLL_DEFAULT_out_pwr_a	0
 #define PLL_DEFAULT_out_pwr_b	0
 
 // **** PARAMETERS ********************************************
@@ -34,6 +35,7 @@ static uint32_t R[126];		// Registers Bank
 
 typedef struct PLL{
 	float frequency;		// Target frequency in MHz
+	int power;				// Output power level in dBm
 	float Fvco;				// Computed frequency of the VCO
 	float fpd;				// Computed frequency of the PD
 
@@ -59,12 +61,12 @@ typedef struct PLL{
 	uint8_t out_pwr_b;				// RFoutB Power
 	uint8_t out_pd_a;				// On = 0, Off = 1
 	uint8_t out_pd_b;				// On = 0, Off = 1
+
 } PLL;
 
 // **** FUNCTION PROTOTYPES********************************************
 PLL 		LMX2572_det_param(struct PLL pll);
 PLL			LMX2572_defaultConfig(struct PLL pll);
-PLL			LMX2572_loadPLL(struct PLL pll);
 
 void 		LMX2572_write(SPI_HandleTypeDef *hspi, uint32_t value);
 uint32_t	LMX2572_read(SPI_HandleTypeDef *hspi, uint32_t value);
@@ -75,7 +77,7 @@ void 		LMX2572_set_cpg(struct PLL pll);
 void	 	LMX2572_set_fpd(struct PLL pll);
 void 		LMX2572_set_frequency(struct PLL pll);
 void 		LMX2752_vco_assist(struct PLL pll);
-void 		LMX2572_calibrate_VCO(struct PLL pll);
+void 		LMX2572_calibrate(struct PLL pll);
 void 		LMX2572_set_CHDIV(struct PLL pll);
 void 		LMX2572_set_MASH(struct PLL pll);
 
@@ -91,6 +93,8 @@ void 		LMX2572_pwr_RFoutA(struct PLL pll);
 void 		LMX2572_pwr_RFoutB(struct PLL pll);
 
 PLL 		LMX2572_init(struct PLL pll, SPI_HandleTypeDef *hspi);
+PLL 		LMX2572_frequency(struct PLL pll, SPI_HandleTypeDef *hspi, float frequency);
+PLL			LMX2572_powerA(struct PLL pll, SPI_HandleTypeDef *hspi, int power);
 
 #ifdef __cplusplus
 }

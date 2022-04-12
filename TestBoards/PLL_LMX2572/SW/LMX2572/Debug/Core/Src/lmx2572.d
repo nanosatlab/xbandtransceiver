@@ -29,8 +29,6 @@ Core/Src/lmx2572.o: ../Core/Src/lmx2572.c ../Core/Inc/lmx2572.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_spi_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_usart.h \
- ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_usart_ex.h \
  ../Core/Inc/lmx2572_configs.h
 
 ../Core/Inc/lmx2572.h:
@@ -94,9 +92,5 @@ Core/Src/lmx2572.o: ../Core/Src/lmx2572.c ../Core/Inc/lmx2572.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h:
 
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
-
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_usart.h:
-
-../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_usart_ex.h:
 
 ../Core/Inc/lmx2572_configs.h:
