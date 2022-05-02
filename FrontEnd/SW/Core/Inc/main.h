@@ -58,26 +58,20 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define mcu_watchdog_Pin GPIO_PIN_14
-#define mcu_watchdog_GPIO_Port GPIOC
-#define Tx_Temp_Pin GPIO_PIN_2
-#define Tx_Temp_GPIO_Port GPIOA
-#define Tx_PM_Pin GPIO_PIN_3
-#define Tx_PM_GPIO_Port GPIOA
-#define Rx_CSB_Pin GPIO_PIN_4
-#define Rx_CSB_GPIO_Port GPIOA
-#define TCXO_NE_Pin GPIO_PIN_5
-#define TCXO_NE_GPIO_Port GPIOA
-#define Tx_CSB_Pin GPIO_PIN_0
-#define Tx_CSB_GPIO_Port GPIOB
-#define Tx_MUXout_Pin GPIO_PIN_4
-#define Tx_MUXout_GPIO_Port GPIOB
-#define Rx_CE_Pin GPIO_PIN_5
-#define Rx_CE_GPIO_Port GPIOB
-#define Rx_MUXout_Pin GPIO_PIN_6
-#define Rx_MUXout_GPIO_Port GPIOB
-#define Tx_CE_Pin GPIO_PIN_7
-#define Tx_CE_GPIO_Port GPIOB
+#define Pout_PA_Pin GPIO_PIN_1
+#define Pout_PA_GPIO_Port GPIOA
+#define Id_PA_Pin GPIO_PIN_2
+#define Id_PA_GPIO_Port GPIOA
+#define EN_6V_Pin GPIO_PIN_0
+#define EN_6V_GPIO_Port GPIOB
+#define EN_5V_Pin GPIO_PIN_1
+#define EN_5V_GPIO_Port GPIOB
+#define T_CSB_Pin GPIO_PIN_3
+#define T_CSB_GPIO_Port GPIOB
+#define PLL_CE_Pin GPIO_PIN_4
+#define PLL_CE_GPIO_Port GPIOB
+#define PLL_CSB_Pin GPIO_PIN_5
+#define PLL_CSB_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
@@ -87,5 +81,3 @@ void Error_Handler(void);
 #endif
 
 #endif /* __MAIN_H */
-
-/************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/
