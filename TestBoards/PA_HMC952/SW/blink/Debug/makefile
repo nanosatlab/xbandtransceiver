@@ -60,8 +60,8 @@ all: main-build
 main-build: blink.elf secondary-outputs
 
 # Tool invocations
-blink.elf: $(OBJS) $(USER_OBJS) C:\Users\guill\Documents\GitHub\blink\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "blink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\guill\Documents\GitHub\blink\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="blink.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+blink.elf: $(OBJS) $(USER_OBJS) C:\Users\guill\Documents\GitHub\xbandtransceiver\TestBoards\PA_HMC952\SW\blink\STM32L476RGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "blink.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\guill\Documents\GitHub\xbandtransceiver\TestBoards\PA_HMC952\SW\blink\STM32L476RGTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="blink.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

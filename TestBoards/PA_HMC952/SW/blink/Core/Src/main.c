@@ -15,13 +15,14 @@
   *
   ******************************************************************************
   */
+
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+#include <PAcontrol.h>
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -92,12 +93,12 @@ int main(void)
   MX_USART2_UART_Init();
   MX_DAC1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_DAC_Start (&hdac1, DAC_CHANNEL_1);
+
   /* USER CODE END 2 */
   float vout_present = 2.8;
   float vout_target = 0.8;
-  uint32_t val_present = vout_present*4096/3.3;;
-  uint32_t val_target = vout_target*4096/3.3;;
+  uint32_t val_present = vout_present*4096/3.3;
+  uint32_t val_target = vout_target*4096/3.3;
   float step_size = (val_target-val_present)/20;
 
   /* Infinite loop */

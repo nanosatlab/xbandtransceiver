@@ -1,4 +1,4 @@
-/* 	*************** README *************
+/* 	****************************
  * 	This driver includes the needed register programming for using the PLL of the LMX2572,
  * 	some configurations have not been implemented since from default are deactivated.
  *
@@ -8,7 +8,7 @@
  *
  *  Last Update: 02/12/2021
  *	Author: Guillem Gracia i Sola
- * 	************************************
+ * 	****************************
  */
 
 

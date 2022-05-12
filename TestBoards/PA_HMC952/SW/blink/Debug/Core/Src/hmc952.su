@@ -1,0 +1,2 @@
+hmc952.c:12:6:hmc952_init	16	static
+hmc952.c:17:6:hmc952_setVoltage	24	static

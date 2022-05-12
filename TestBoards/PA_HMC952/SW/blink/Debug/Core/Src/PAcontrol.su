@@ -1,0 +1,2 @@
+PAcontrol.c:12:6:hmc952_init	16	static
+PAcontrol.c:18:6:hmc952_setVoltage	24	static
