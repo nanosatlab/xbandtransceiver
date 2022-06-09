@@ -29,7 +29,7 @@ Core/Src/PAcontrol.o: ../Core/Src/PAcontrol.c ../Core/Inc/PAcontrol.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_pwr_ex.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart.h \
  ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h \
- ../Core/Inc/PA_config.h
+ ../Core/Inc/PA_config.h ../Core/Inc/main.h
 
 ../Core/Inc/PAcontrol.h:
 
@@ -94,3 +94,5 @@ Core/Src/PAcontrol.o: ../Core/Src/PAcontrol.c ../Core/Inc/PAcontrol.h \
 ../Drivers/STM32L4xx_HAL_Driver/Inc/stm32l4xx_hal_uart_ex.h:
 
 ../Core/Inc/PA_config.h:
+
+../Core/Inc/main.h:

@@ -80,10 +80,10 @@
       (sketchpadsonfab false)
       (subtractmaskfromsilk false)
       (outputformat 4)
-      (mirror false)
+      (mirror true)
       (drillshape 0)
       (scaleselection 1)
-      (outputdirectory "OutputJob/")
+      (outputdirectory "MAX870_OutputJob/")
     )
   )
 

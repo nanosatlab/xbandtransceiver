@@ -620,6 +620,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 90))
     )
+    (model "C:/Users/guill/Documents/GitHub/NSL_KiCad_Libraries/Connectors/StepFiles/1211-66139-TD--3DModel-STEP-216184.STEP"
+      (offset (xyz -6.35 0 0.127))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 90))
+    )
   )
 
   (footprint "GGS_RF:JC0603C" (layer "F.Cu")
@@ -3832,6 +3837,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 90))
     )
+    (model "C:/Users/guill/Documents/GitHub/NSL_KiCad_Libraries/Connectors/StepFiles/1211-66139-TD--3DModel-STEP-216184.STEP"
+      (offset (xyz -6.35 0 0.127))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 90 -180 -90))
+    )
   )
 
   (footprint "Capacitor_SMD:C_0603_1608Metric" (layer "F.Cu")
@@ -4335,6 +4345,11 @@
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 180))
     )
+    (model "C:/Users/guill/Documents/GitHub/NSL_KiCad_Libraries/Connectors/StepFiles/SFC-110-T2-F-D-A-TR.step"
+      (offset (xyz 0 0 0.127))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 0))
+    )
   )
 
   (footprint "Capacitor_SMD:C_0402_1005Metric" (layer "B.Cu")
@@ -4548,7 +4563,7 @@
   (dimension (type aligned) (layer "Cmts.User") (tstamp 49493699-fca6-47c0-b108-49ae5dd8d09a)
     (pts (xy 173 137) (xy 133 137))
     (height -9.5)
-    (gr_text "40,0000 mm" (at 153 145.35) (layer "Cmts.User") (tstamp 49493699-fca6-47c0-b108-49ae5dd8d09a)
+    (gr_text "1574,8031 mils" (at 153 145.35) (layer "Cmts.User") (tstamp 49493699-fca6-47c0-b108-49ae5dd8d09a)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (format (units 3) (units_format 1) (precision 4))
@@ -4557,7 +4572,7 @@
   (dimension (type aligned) (layer "Cmts.User") (tstamp ff533c1d-d6b3-4228-aa64-e408897b8625)
     (pts (xy 133 137) (xy 133 72))
     (height -11.75)
-    (gr_text "65,0000 mm" (at 120.1 104.5 90) (layer "Cmts.User") (tstamp ff533c1d-d6b3-4228-aa64-e408897b8625)
+    (gr_text "2559,0551 mils" (at 120.1 104.5 90) (layer "Cmts.User") (tstamp ff533c1d-d6b3-4228-aa64-e408897b8625)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (format (units 3) (units_format 1) (precision 4))

@@ -1149,7 +1149,6 @@
     )
   )
 
-
   (junction (at 29.21 107.95) (diameter 0) (color 0 0 0 0)
     (uuid 028f1db7-038e-4190-9aa2-9ea9a7b098f5)
   )
@@ -1227,7 +1226,7 @@
   )
 
   (no_connect (at 62.23 44.45) (uuid 3393097b-dbe9-4c12-8303-b93edc1b33f3))
-  (no_connect (at 168.91 48.26) (uuid 3393097b-dbe9-4c12-8303-b93edc1b33f3))
+  (no_connect (at 168.91 48.26) (uuid 3393097b-dbe9-4c12-8303-b93edc1b33f4))
   (no_connect (at 36.83 72.39) (uuid 3783c5ab-fc41-43e6-94a9-6f0cf006aeb0))
   (no_connect (at 36.83 74.93) (uuid 3783c5ab-fc41-43e6-94a9-6f0cf006aeb1))
   (no_connect (at 168.91 40.64) (uuid 58723525-ff89-4437-bb35-01409840a64a))
@@ -3635,6 +3634,9 @@
     (path "/9a6659e5-c17e-4a66-9d30-cb0af9809f0c"
       (reference "#PWR03") (unit 1) (value "GND") (footprint "")
     )
+    (path "/1c391ca7-e610-404c-bdff-cd84da814875/ae25eb20-039f-4457-a98a-6b5d5fc82887"
+      (reference "#PWR04") (unit 1) (value "GND") (footprint "")
+    )
     (path "/9cb92f8e-8392-4d3c-9e0f-3097da1a7af8"
       (reference "#PWR05") (unit 1) (value "GND") (footprint "")
     )
@@ -4042,6 +4044,12 @@
     )
     (path "/1c391ca7-e610-404c-bdff-cd84da814875/af83f692-99c8-4b9c-8d6b-6c95f454c4ee"
       (reference "R12") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
+    (path "/1c391ca7-e610-404c-bdff-cd84da814875/83fe581d-119f-43ee-962c-ad43ffda1673"
+      (reference "R13") (unit 1) (value "20k") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
+    (path "/1c391ca7-e610-404c-bdff-cd84da814875/506f6f92-f331-40d0-9387-48c8603c64b1"
+      (reference "R14") (unit 1) (value "20k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/fa7fee43-ddc7-4557-9241-1beab95f2224"
       (reference "R22") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")

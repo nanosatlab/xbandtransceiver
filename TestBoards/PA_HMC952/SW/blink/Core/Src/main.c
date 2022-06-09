@@ -18,11 +18,11 @@
 
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <PAcontrol.h>
 #include "main.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "PAcontrol.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -93,29 +93,42 @@ int main(void)
   MX_USART2_UART_Init();
   MX_DAC1_Init();
   /* USER CODE BEGIN 2 */
+  /*
+  PA_start(&hdac1);
+  HAL_Delay(500);
 
-  /* USER CODE END 2 */
-  float vout_present = 2.8;
-  float vout_target = 0.8;
-  uint32_t val_present = vout_present*4096/3.3;
-  uint32_t val_target = vout_target*4096/3.3;
-  float step_size = (val_target-val_present)/20;
+  PA_pinchoff(&hdac1);
+  HAL_Delay(500);
+
+  PA_transmit(&hdac1);
+  HAL_Delay(500);
+
+  PA_stop(&hdac1);
+  */
+	HAL_DAC_Start (&hdac1, DAC_CHANNEL_1);
+	uint32_t DACvalue;
+	float voltage = 0;
+
+	  voltage = 2.5;
+	  DACvalue = voltage*DACbits/VDACref;
+		HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, DACvalue);
+		HAL_Delay(50);
+
+	/* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
     /* USER CODE END WHILE */
-	  //HAL_GPIO_TogglePin (GPIOA, GPIO_PIN_5);
-
-	  for (int i; i<20; i++){
-		  val_present += step_size;
-		  HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, val_present);
-
-		  HAL_Delay (50);
-	  }
-
-	  val_present = 2.8;
+//		if(voltage < 3.3) {
+//			voltage = voltage + 0.1;
+//		} else {
+//			voltage = 0;
+//		}
+//	  DACvalue = voltage*DACbits/VDACref;
+//		HAL_DAC_SetValue(&hdac1, DAC_CHANNEL_1, DAC_ALIGN_12B_R, DACvalue);
+//		HAL_Delay(50);
 
 
     /* USER CODE BEGIN 3 */
@@ -199,7 +212,7 @@ static void MX_DAC1_Init(void)
   sConfig.DAC_SampleAndHold = DAC_SAMPLEANDHOLD_DISABLE;
   sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
   sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
-  sConfig.DAC_ConnectOnChipPeripheral = DAC_CHIPCONNECT_DISABLE;
+  sConfig.DAC_ConnectOnChipPeripheral = DAC_CHIPCONNECT_ENABLE;
   sConfig.DAC_UserTrimming = DAC_TRIMMING_FACTORY;
   if (HAL_DAC_ConfigChannel(&hdac1, &sConfig, DAC_CHANNEL_1) != HAL_OK)
   {
@@ -264,6 +277,9 @@ static void MX_GPIO_Init(void)
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LD2_GPIO_Port, LD2_Pin, GPIO_PIN_RESET);
 
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOB, EN_6V_Pin|EN_5V_Pin, GPIO_PIN_RESET);
+
   /*Configure GPIO pin : B1_Pin */
   GPIO_InitStruct.Pin = B1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_IT_FALLING;
@@ -276,6 +292,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
   HAL_GPIO_Init(LD2_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : EN_6V_Pin EN_5V_Pin */
+  GPIO_InitStruct.Pin = EN_6V_Pin|EN_5V_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
 }
 

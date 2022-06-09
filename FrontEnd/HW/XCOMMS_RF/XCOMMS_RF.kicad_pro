@@ -439,10 +439,10 @@
   "pcbnew": {
     "last_paths": {
       "gencad": "",
-      "idf": "",
+      "idf": "OutputJob/XCOMMS_RF.emn",
       "netlist": "",
       "specctra_dsn": "",
-      "step": "XCOMMS_RF.step",
+      "step": "OutputJob/XCOMMS_RF.step",
       "vrml": ""
     },
     "page_layout_descr_file": ""

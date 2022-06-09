@@ -14,7 +14,8 @@
 #define VPA_max			0.8		// Maximum negative PA Vgate
 #define VPA_off			1.6		// Pinch-off threshold
 #define VPA_pinchoff	1.4		// Conduction threshold
+#define VPA_transmit		1		// Optimal transmission
 
-
+#define PA_step			0.05		// gate voltage steps
 
 #endif /* INC_PA_CONFIG_H_ */
