@@ -4380,13 +4380,18 @@
       (net 11 "/SDO") (pintype "bidirectional") (tstamp 7a18c932-6466-4280-947f-3110fe526b9d))
     (pad "20" smd rect locked (at -5.715 1.365 270) (size 0.74 2.22) (layers "B.Cu" "B.Paste" "B.Mask")
       (net 10 "/SDI") (pintype "bidirectional") (tstamp 543cb360-696a-45c3-ba90-585ece83028a))
-    (model "C:/Users/guill/Documents/GitHub/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Connectors/StepFiles/SFC-110-T2-F-D-A-TR.step"
+    (model "C:/Users/guill/Documents/GitHub/xbandtransceiver/FrontEnd/HW/KiCad_Libraries/Connectors/StepFiles/SFC-110-T2-F-D-A-TR.step" hide
       (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 180))
     )
     (model "C:/Users/guill/Documents/GitHub/NSL_KiCad_Libraries/Connectors/StepFiles/SFC-110-T2-F-D-A-TR.step"
       (offset (xyz 0 0 0.127))
+      (scale (xyz 1 1 1))
+      (rotate (xyz -90 0 180))
+    )
+    (model "C:/Users/guill/Documents/GitHub/NSL_KiCad_Libraries/Connectors/StepFiles/TFC-110-02-F-D-A.stp" hide
+      (offset (xyz 0 0 0))
       (scale (xyz 1 1 1))
       (rotate (xyz -90 0 0))
     )
